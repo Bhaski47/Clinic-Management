@@ -17,17 +17,5 @@ const docSchema = new mongoose.Schema({
     ]
 })
 
-// const validate = (data) =>{
-//     const passOption = {
-//         min:8,
-//         max:30
-//     };
-//     const schema = joi.object({
-//         name:joi.string().required().label("Name"),
-//         email:joi.string().email().required().label("Email"),
-//         password:passwordComplexity(passOption).required().label("Password")
-//     })
-//     return schema.validate(data);
-// }
 const Doc = mongoose.model("Doc", docSchema);
 module.exports = { Doc};
