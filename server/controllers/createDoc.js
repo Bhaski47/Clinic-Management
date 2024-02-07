@@ -11,9 +11,9 @@ const createDoc = async (req, res) => {
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashedPass = await bcrypt.hash(req.body.password, salt);
         await Doc({ ...req.body, password: hashedPass }).save();
-        res.status(200).send({ message: "User Created" });
+        res.status(200).send({ message: "Doctor Account Created" });
     } catch (err) {
-        return res.status(500).send({ message: "Server Error For Creating " + err })
+        return res.status(500).send({ message: "Server Error For Creating Doctor " + err })
     }
 }
 

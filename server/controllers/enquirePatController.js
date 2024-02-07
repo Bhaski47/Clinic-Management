@@ -17,7 +17,7 @@ const enquirePatController = async (req, res) => {
         const docObjectId = new mongoose.Types.ObjectId(docId);
         const patDetail = await Pats.findOne({phno:patPh})
         if(patDetail){
-            patDetail.docConsult.push({ docObjectId, prescription });
+            patDetail.docConsult.push({ doctor:docObjectId, prescription });
             await patDetail.save();
             doc.patConsult.push(patDetail._id);
         }
@@ -27,7 +27,7 @@ const enquirePatController = async (req, res) => {
             age: patAge,
             gender: patGender,
             phno: patPh,
-            docConsult: [{ docObjectId, prescription }],
+            docConsult: [{ doctor:docObjectId, prescription }],
         }).save();
         doc.patConsult.push(newPatient._id);
     }
