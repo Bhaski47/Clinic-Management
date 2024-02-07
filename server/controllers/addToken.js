@@ -1,3 +1,5 @@
+//To add the Token Generation To The Collection
+
 const { Token } = require("../models/tokModel");
 const mongoose = require("mongoose");
 const createToken = async (req, res) => {

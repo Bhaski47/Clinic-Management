@@ -1,3 +1,5 @@
+//To Retrieve All The Tokens From The Collection Of That Particular Date i.e Present Date
+
 const { Token } = require("../models/tokModel");
 
 const getTokensForToday = async (req, res) => {

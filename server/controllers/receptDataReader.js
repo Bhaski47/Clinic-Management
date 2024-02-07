@@ -4,12 +4,12 @@ const receptDataReader = async (req, res) => {
     try {
         const recept = await Recept.findById(req.body.id)
             .populate({
-                path: 'doctor.docObjectId', // assuming this is the path to the Doctor model
-                model: 'Doc', // specify the model to populate
+                path: 'doctor.docObjectId',
+                model: 'Doc',
             })
             .populate({
-                path: 'doctor.patId', // assuming this is the path to the Pats model
-                model: 'Pats', // specify the model to populate
+                path: 'doctor.patId',
+                model: 'Pats',
             });
 
         if (!recept) return res.status(200).send({ data: "No data" });
