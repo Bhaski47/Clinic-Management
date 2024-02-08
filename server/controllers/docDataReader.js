@@ -1,3 +1,6 @@
+//Get The Details Of The Patients Where He Is Consulted With 
+//This Doctor
+
 const { Doc } = require('../models/docModel');
 
 const docDataReader = async (req, res) => {

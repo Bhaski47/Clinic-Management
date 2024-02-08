@@ -9,7 +9,7 @@ const billingAmount = async (req, res) => {
             return res.status(422).send("Patient is not registered");
         }
 
-        const doc = await Doc.findOne({ _id: req.body.docId });
+        const doc = await Doc.findOne({ name:req.body.name.toLowerCase() });
         if (!doc) {
             return res.status(422).send("Doctor is not registered");
         }

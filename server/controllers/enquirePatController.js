@@ -1,4 +1,4 @@
-//The Doctor Will Just Display The Details Of The Patient To The Doctor 
+//The Doctor Will Just Display The Details Of The Patient
 //And Retrieve The Disease And Gives The Prescription
 
 const { Doc } = require('../models/docModel');
@@ -11,9 +11,9 @@ const enquirePatController = async (req, res) => {
         if (!doc) {
             return res.status(404).send("Doctor Not Found");
         }
-        const docId = req.body.docId;
+        // const docId = req.body.docId;
         const prescription = req.body.prescription;
-        const docObjectId = new mongoose.Types.ObjectId(docId);
+        const docObjectId = new mongoose.Types.ObjectId(doc._id);
         const patDetail = await Pats.findOne({phno:patPh})
         if(patDetail){
             patDetail.docConsult.push({ doctor:docObjectId, prescription });

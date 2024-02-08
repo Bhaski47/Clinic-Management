@@ -1,3 +1,5 @@
+//Will Get The Deatils of All the Doctor,Patients Consultants
+
 const { Recept } = require("../models/receptModel");
 
 const receptDataReader = async (req, res) => {
