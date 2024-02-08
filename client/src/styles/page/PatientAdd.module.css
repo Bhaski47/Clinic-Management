@@ -1,0 +1,133 @@
+.container {
+    padding-top: 7rem;
+    padding-left: 22%;
+}
+
+.checkNoBox input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.checkNoBox input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.checkNoBox {
+    font-family: NunitoReg;
+    width: 40%;
+    margin-left: calc(20% + 20px);
+    height: 40vh;
+    border-radius: 30px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    /* border: 10px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    /* background-color: red; */
+}
+
+.checkNoBox label {
+    font-size: 1.3rem;
+}
+
+.search {
+    height: 5vh;
+    width: 15vw;
+    outline: none;
+    padding-left: 1.2rem;
+    border-radius: 30px;
+    border: 1.5px solid gray;
+    transition: all 0.2s ease-in-out;
+}
+
+.search:focus {
+    transition: all 0.2 ease-in-out;
+    border: 1.5px solid black;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 1.1rem;
+}
+
+.signupMessage {
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.signupMessage:hover {
+    color: #218553;
+    transition: all 0.2s ease-in-out;
+}
+
+.addPatient {
+    width: 90%;
+    height: 80vh;
+    border-radius: 30px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    /* border: 10px solid black; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.addContainer {
+    width: 80%;
+    margin: auto;
+    height: 80%;
+}
+
+.formContainer {
+    font-family: 'NunitoLight', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px; Add padding for better appearance */
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    /* Adjust the spacing between form groups */
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    margin-bottom: 5px;
+}
+
+.formGroup textarea {
+    resize: none;
+}
+
+.formGroup input,
+select,
+textarea {
+    outline: none;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttons {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttons:hover {
+    background-color: #45a049;
+}

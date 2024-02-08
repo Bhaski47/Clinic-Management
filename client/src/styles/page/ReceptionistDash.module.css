@@ -1,0 +1,70 @@
+.container {
+    padding-top: 7rem;
+    padding-left: 22%;
+}
+
+.tableContainer {
+    width: 90%;
+    height: 80vh;
+    border-radius: 30px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    /* border: 10px solid black; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.searchBar {
+    position: fixed;
+}
+
+.search {
+    height: 5vh;
+    width: 15vw;
+    outline: none;
+    padding-left: 2.5rem;
+    border-radius: 30px;
+    border: 1.5px solid gray;
+    transition: all 0.2s ease-in-out;
+}
+
+.search:focus {
+    transition: all 0.2 ease-in-out;
+    border: 1.5px solid black;
+}
+
+.table {
+    /* display: grid; */
+    margin-top: 5rem;
+    /* background-color: red; */
+    border-collapse: separate;
+    border-spacing: 10px;
+    /* height: 100%; */
+    width: 100%;
+}
+
+.table th {
+    border: none;
+    /* No border for table header */
+    padding: 8px;
+    text-align: center;
+    font-family: NunitoLight;
+    /* margin-bottom: 3%; */
+}
+
+.table td {
+    padding: 8px;
+}
+
+.patDetails {
+    font-family: NunitoReg;
+    margin-bottom: 30px;
+    height: 8vh;
+    border: 1px solid black;
+    /* background-color: aqua; */
+    text-align: center;
+}
