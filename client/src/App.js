@@ -4,9 +4,14 @@ import PatientAdd from "./pages/Receptionist/PatientAdd";
 import BillingAmount from "./pages/Receptionist/BillingAmount";
 import DoctorDash from "./pages/Doctor/DoctorDash";
 import PatientChecker from "./pages/Doctor/PatientChecker";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
   const router = createBrowserRouter([
+    {
+      path:'/',
+      element:<Auth/>
+    },
     {
       path: '/recept/dashboard',
       element: <ReceptionistDash />
@@ -29,15 +34,6 @@ function App() {
     }
   ]);
 
-  {/* <BrowserRouter>
-        <Routes>
-          <Route path="/recept" element={<NavBar />}>
-            <Route path="/recept/dashboard" element={<ReceptionistDash />} />
-          </Route>
-        </Routes>
-      </BrowserRouter> */}
-
-  // <RouterProvider router={router} />
   return (
     <RouterProvider router={router} />
   );
