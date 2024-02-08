@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const patSchema = new mongoose.Schema({
     name: { type: String, required: true },
     age: { type: Number, required: true },
-    phno: { type: Number, required: true },
+    phno: { type: Number, required: true,unique:true },
     gender: { type: String, required: true },
+    address:{type:String},
     amount: { type: String },
     docConsult: [
         {
