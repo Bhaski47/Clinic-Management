@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import NavBar from '../../components/NavBar'
 import styles from '../../styles/page/PatientAdd.module.css'
 import Loader from '../../utils/Loader';
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function PatientAdd() {
+    const navigate = useNavigate();
     const [isExist, setExist] = useState(true);
     const [getNumber, setNumber] = useState(null);
     const [error, setError] = useState(null);
@@ -13,6 +16,10 @@ function PatientAdd() {
         setLoader(true);
         console.log("Done");
     }
+    useEffect(() => {
+        const localData = localStorage.getItem("receptData");
+        if (!localData) return navigate("/");
+    }, []);
     return (
         <>
             <NavBar />
@@ -61,7 +68,7 @@ function PatientAdd() {
                                     <textarea id="address" cols="30" rows="10" required></textarea>
                                 </div>
                                 <button type="submit" className={styles.buttons}>Submit</button>
-                                <h4 onClick={()=>setExist(prev=>!prev)}>Does The Patient Already Have An Account ?</h4>
+                                <h4 onClick={() => setExist(prev => !prev)}>Does The Patient Already Have An Account ?</h4>
                             </form>
                         </div>
 

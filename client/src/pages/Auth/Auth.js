@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Auth() {
     const nav = useNavigate();
-    const [username, setUser] = useState("");
+    // const [username, setUser] = useState("");
     const [pass, setPass] = useState("");
     const [email, setEmail] = useState("");
     const [isLogin, setLogin] = useState(true);
@@ -17,12 +17,12 @@ function Auth() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const token = await axios.post("https://localhost:3000/auth/log", {
+            const token = await axios.post("https://localhost:3000/api/auth/log", {
                 pass: pass,
                 email: email,
             });
-            const tok = token.data.data;
-            localStorage.setItem("myTok", tok);
+            const tok = token.data;
+            localStorage.setItem("receptData", tok);
             localStorage.setItem("email", email);
             setReserror("Logging In");
             setLogin(false);
@@ -40,15 +40,20 @@ function Auth() {
         e.preventDefault();
         errorDetector();
         const data = {
-            name: username,
             email: email,
-            pass: pass,
+            password: pass,
         };
         try {
-            const token = await axios.post("https://localhost:3000/auth/create", data);
-            setReserror(token.data.message);
+            const tok = await axios.post("http://localhost:3006/api/docs/logdoc/", data);
+            localStorage.setItem("docData", tok);
+            // console.log(data.password)
+            // setReserror(token.data.message);
+            setReserror("Logging In");
+            // setLogin(false);
+            nav("/doc/dash");
+            
         } catch (err) {
-            setReserror(err.response.data.message);
+            setReserror("Error "+err);
             setError(true);
         }
     };

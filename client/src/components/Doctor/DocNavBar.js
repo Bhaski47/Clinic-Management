@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../../styles/components/AuthHeader.module.css';
 import DocSideBar from './DocSideBar';
+import { useNavigate } from 'react-router-dom';
 
 function DocNavBar() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const localData = localStorage.getItem("docData");
+    if (!localData) return navigate("/");
+    console.log(localData);
+}, [navigate]);
   return (
     <>
       <div className={styles.navContainer}>

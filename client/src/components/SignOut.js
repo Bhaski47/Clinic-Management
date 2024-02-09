@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const SignOut = () => {
   const navigate = useNavigate();
   const handleSignout = () => {
-    localStorage.removeItem("userRole");
+    localStorage.clear();
     navigate("/");
   };
   return (

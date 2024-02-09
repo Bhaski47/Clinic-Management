@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/page/PatientChecker.module.css'
 import DocNavBar from '../../components/Doctor/DocNavBar'
+import { useNavigate } from 'react-router-dom'
 
 function PatientChecker() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const localData = localStorage.getItem("docData");
+        if (!localData) return navigate("/");
+    }, [navigate]);
     return (
         <>
             <DocNavBar />
@@ -16,11 +22,11 @@ function PatientChecker() {
                             </div>
                             <div className={styles.formGroup}>
                                 <label htmlFor="age">Age</label>
-                                <input type="number" id="age" required disabled/>
+                                <input type="number" id="age" required disabled />
                             </div>
                             <div className={styles.formGroup}>
                                 <label htmlFor="phoneNumber">Phone Number</label>
-                                <input type="number" id="phoneNumber" required disabled/>
+                                <input type="number" id="phoneNumber" required disabled />
                             </div>
                             <div className={styles.formGroup}>
                                 {/* <label htmlFor="gender">Gender</label>

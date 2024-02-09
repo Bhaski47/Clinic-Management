@@ -1,8 +1,15 @@
 import React from 'react'
 import NavBar from '../../components/NavBar'
 import styles from '../../styles/page/BillingAmount.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function BillingAmount() {
+    const navigate = useNavigate();
+    useEffect(() => { 
+        const localData = localStorage.getItem("receptData");
+        if(!localData)  return navigate("/");
+     }, [navigate]);
     return (
         <>
             <NavBar />

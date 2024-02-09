@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/page/ReceptionistDash.module.css'
 import DocNavBar from '../../components/Doctor/DocNavBar'
+import { useNavigate } from 'react-router-dom'
 
 function DoctorDash() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const localData = localStorage.getItem("docData");
+    if (!localData) return navigate("/");
+  }, [navigate]);
 
   const data = [
     {
@@ -48,10 +54,10 @@ function DoctorDash() {
             <tbody className={styles.patient}>
               {data.map((data, index) => (
                 <tr key={index} className={styles.patDetails}>
-                    <td>{index + 1}</td>
-                    <td>{data.Name}</td>
-                    <td>{data.Age}</td>
-                    <td>{data.Time}</td>
+                  <td>{index + 1}</td>
+                  <td>{data.Name}</td>
+                  <td>{data.Age}</td>
+                  <td>{data.Time}</td>
                 </tr>
               ))}
             </tbody>
