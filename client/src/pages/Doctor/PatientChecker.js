@@ -12,10 +12,9 @@ function PatientChecker() {
     const fetchData = async () => {
       try {
         const tempData = localStorage.getItem("docData");
-        const trimmedData = tempData.replace(/[\u200B-\u200D\uFEFF]/g, '');
-        setLocalData(JSON.parse(trimmedData));
-        console.log(JSON.parse(localData));
-        console.log("local " + localData);
+        setLocalData(JSON.parse(tempData));
+        // console.log(JSON.parse(localData));
+        // console.log("local " + localData);
         if (!tempData) {
           navigate("/");
           return;
@@ -50,14 +49,14 @@ function PatientChecker() {
     setPrescription(fetch.data.data.patient.combinedData);
     setPatid(fetch.data.data.patient._id);
     setTokenChecked(true);
-    console.log(fetch);
+    // console.log(fetch);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!tokenValid) return;
     if (!tokenChecked) return;
-    if (!enteredPres) return console.log(0);
+    if (!enteredPres) return ;
     try {
       const sendData = await axios.post(
         "http://localhost:3006/api/docs/enqpat",
@@ -67,7 +66,7 @@ function PatientChecker() {
           pres: enteredPres,
         }
       );
-      console.log(sendData.data);
+      // console.log(sendData.data);
       setTokenChecked(false);
     } catch (error) {
       console.log("error" + error);

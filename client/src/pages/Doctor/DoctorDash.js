@@ -28,7 +28,7 @@ function DoctorDash() {
       const temp = await localStorage.getItem("docData");
       const parsedData = temp ? JSON.parse(temp) : {};
       setLocalData(parsedData)
-      console.log(localData);
+      // console.log(localData);
       // console.log(temp)
       if (!temp) {
         navigate("/");
@@ -51,16 +51,15 @@ function DoctorDash() {
   useEffect(() => {
     const fetchData = async () => {
       const fetchID = localData.data.data._id;
-      console.log(localData.data.data._id)
       // const id = "65c3bfc511ad6e05a712b26e";
+      // console.log(fetchID);
       if (fetchID) {
         const response = await axios.post(
           "http://localhost:3006/api/docs/retdoc",{
-            localData
+            id:fetchID
           }
         );
         setData(response.data.data.patConsult);
-        console.log(response.data);
       }
     };
 
