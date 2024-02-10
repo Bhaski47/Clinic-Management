@@ -44,7 +44,8 @@ function Auth() {
             password: pass,
         };
         try {
-            const tok = await axios.post("http://localhost:3006/api/docs/logdoc/", data);
+            let tok = await axios.post("http://localhost:3006/api/docs/logdoc/", data);
+            tok = JSON.stringify(tok);
             localStorage.setItem("docData", tok);
             // console.log(data.password)
             // setReserror(token.data.message);

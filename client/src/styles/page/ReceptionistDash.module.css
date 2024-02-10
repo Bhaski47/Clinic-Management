@@ -59,6 +59,13 @@
 .table td {
     padding: 8px;
 }
+.patient{
+    position: relative;
+}
+.noData{
+    position: absolute;
+    left: 50%;
+}
 
 .patDetails {
     font-family: NunitoReg;

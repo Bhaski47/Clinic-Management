@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
-import styles from '../../styles/components/AuthHeader.module.css';
-import DocSideBar from './DocSideBar';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import styles from "../../styles/components/AuthHeader.module.css";
+import DocSideBar from "./DocSideBar";
+import { useNavigate } from "react-router-dom";
 
 function DocNavBar() {
   const navigate = useNavigate();
+  const [name, setName] = useState('');
   useEffect(() => {
-    const localData = localStorage.getItem("docData");
+    let localData = localStorage.getItem("docData");
     if (!localData) return navigate("/");
-    console.log(localData);
-}, [navigate]);
+    localData = JSON.parse(localData);
+    // console.log(localData.data.data.name);
+    setName(localData.data.data.name);
+  }, [navigate]);
   return (
     <>
       <div className={styles.navContainer}>
@@ -17,7 +20,7 @@ function DocNavBar() {
           <div></div>
           <div className={styles.userInfo}>
             <div></div>
-            <h3 className={styles.userName}>Bhaskar</h3>
+            <h3 className={styles.userName}>{name}</h3>
             <button className={`${styles.button} ${styles.type1}`}>
               <span className={styles.btntxt}>Sign Out</span>
             </button>
@@ -26,7 +29,7 @@ function DocNavBar() {
       </div>
       <DocSideBar />
     </>
-  )
+  );
 }
 
-export default DocNavBar
+export default DocNavBar;
