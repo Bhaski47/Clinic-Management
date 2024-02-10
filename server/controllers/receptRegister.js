@@ -6,9 +6,9 @@ const receptRegister = async (req, res) => {
         const patDetail = await Pats.findOne({ phno: req.body.patPh }) ? true : false;
         if(patDetail) return res.status(422).send("Patient is already Registered");
         const newPatient = await Pats.create({
-            name:req.body.patName,
-            age:req.body.patAge,
-            phno:req.body.patPh,
+            name:req.body.name,
+            age:req.body.age,
+            phno:req.body.phno,
             gender:req.body.gender
         });
         res.status(200).json({ message: 'Patient details added successfully' });

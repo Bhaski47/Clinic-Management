@@ -10,9 +10,10 @@ const getTokensForToday = async (req, res) => {
         const todayEnd = new Date();
         todayEnd.setHours(23, 59, 59, 999);
 
-        const tokensForToday = await Token.find({
-            "tokens.createdAt": { $gte: todayStart, $lte: todayEnd }
-        });
+        // const tokensForToday = await Token.find({
+        //     "tokens.createdAt": { $gte: todayStart, $lte: todayEnd }
+        // });
+        const tokensForToday = await Token.find();
 
         res.status(200).send({ tokens: tokensForToday });
     } catch (err) {

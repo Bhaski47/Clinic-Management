@@ -9,23 +9,32 @@ const enquirePatController = async (req, res) => {
     try {
         const doc = await Doc.findById(req.body.id);
         if (!doc) {
-            return res.status(404).send("Doctor Not Found");
+            return res.status(404).send({data:"Doctor Not Found"});
         }
         // const docId = req.body.docId;
-        const prescription = req.body.prescription;
+        let prescription = req.body.pres;
+        // console.log(prescription)
+        // prescription = JSON.stringify(prescription);
+        if (typeof prescription !== 'string') {
+            return res.status(400).json({ error: 'Prescription must be a string' });
+        }
         const docObjectId = new mongoose.Types.ObjectId(doc._id);
-        const patDetail = await Pats.findOne({phno:patPh})
+        const patDetail = await Pats.findOne({_id:req.body.patid})
+        // console.log(patDetail.id)
+        if (!doc.patConsult) {
+            doc.patConsult = [];
+        }
         if(patDetail){
             patDetail.docConsult.push({ doctor:docObjectId, prescription });
             await patDetail.save();
-            doc.patConsult.push(patDetail._id);
+            doc.patConsult.push(patDetail.id);
         }
         else{
         const newPatient = await new Pats({
-            name: patName,
-            age: patAge,
-            gender: patGender,
-            phno: patPh,
+            name: req.body.name,
+            age: req.body.patAge,
+            gender: req.body.patGender,
+            phno: req.body.patPh,
             docConsult: [{ doctor:docObjectId, prescription }],
         }).save();
         doc.patConsult.push(newPatient._id);

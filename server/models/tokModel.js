@@ -11,6 +11,9 @@ const tokSchema = new mongoose.Schema({
         }
     ],
 }
+// ,{
+//     expires:2,
+//   }
 )
 
 const Token = mongoose.model("Token", tokSchema);
