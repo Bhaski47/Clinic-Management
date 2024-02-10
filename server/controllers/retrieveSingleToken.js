@@ -14,7 +14,7 @@ const retrieveSingleToken = async (req, res) => {
     // return res.status(200).send({data:results1})
     const docsDetails = await Doc.findById(results1.docs);
     const patientDetails = await Pats.findById(results1.patient);
-    console.log(patientDetails)
+    // console.log(patientDetails)
     if (!docsDetails || !patientDetails) {
       return res
         .status(404)

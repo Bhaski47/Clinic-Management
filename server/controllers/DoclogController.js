@@ -18,7 +18,7 @@ const DoclogController = async (req, res) => {
       return res.status(401).send({ message: "Invalid Password" });
     }
     res.status(200).send({ data: user, message: "Logged Successfully" });
-    console.log(1);
+    // console.log(1);
   } catch (err) {
     res.status(500).send({ message: "Login Error" });
   }
