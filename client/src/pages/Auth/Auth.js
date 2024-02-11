@@ -17,16 +17,15 @@ function Auth() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const token = await axios.post("https://localhost:3000/api/auth/log", {
-                pass: pass,
+            const token = await axios.post("http://localhost:3006/api/recept/logrecept", {
+                password: pass,
                 email: email,
             });
-            const tok = token.data;
+            const tok = JSON.stringify(token.data);
             localStorage.setItem("receptData", tok);
-            localStorage.setItem("email", email);
-            setReserror("Logging In");
-            setLogin(false);
-            nav("/todo");
+            // setReserror("Logging In");
+            // setLogin(false);
+            nav("/recept/dashboard");
         } catch (err) {
             setReserror(err.response.data.message);
             setError(true);
