@@ -9,7 +9,8 @@ const receptRegister = async (req, res) => {
             name:req.body.name,
             age:req.body.age,
             phno:req.body.phno,
-            gender:req.body.gender
+            gender:req.body.gender,
+            address:req.body.address
         });
         res.status(200).json({ message: 'Patient details added successfully' });
     } catch (err) {
