@@ -17,7 +17,7 @@ function PatientAdd() {
   const [getnewPatAge,setNewPatAge] = useState("")
   const [getnewPatPhno,setNewPatPhno] = useState("")
   const [getnewPatAddr,setNewPatAddr] = useState("")
-  const [selectedGender, setSelectedGender] = useState('');
+  const [selectedGender, setSelectedGender] = useState("Female");
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -39,6 +39,7 @@ function PatientAdd() {
   const handleNewPatSubmit = async(e) =>{
     try {
       e.preventDefault();
+      // console.log(selectedGender);
     const createPat = await axios.post("https://careconnect-5ssb.onrender.com/api/recept/receptregister",{
       name:getnewPatName,
       age:getnewPatAge,
@@ -46,7 +47,7 @@ function PatientAdd() {
       phno:getnewPatPhno,
       patPh:getnewPatPhno
     })
-    console.log("Success")
+    // console.log("Success")
     } catch (error) {
       console.log("Error ",error )
     }
