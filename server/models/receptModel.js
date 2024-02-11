@@ -18,7 +18,7 @@ const receptSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Pats",
       },
-      amount: { type: String },
+      amount: { type: String,required:true },
       createdAt: { type: Date, default: Date.now },
     },
   ],

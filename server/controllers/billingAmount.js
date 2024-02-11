@@ -4,12 +4,12 @@ const { Recept } = require("../models/receptModel");
 
 const billingAmount = async (req, res) => {
     try {
-        const existingPatient = await Pats.findOne({ phno: req.body.phno });
+        const existingPatient = await Pats.findOne({ phno: req.body.patphno });
         if (!existingPatient) {
             return res.status(422).send("Patient is not registered");
         }
 
-        const doc = await Doc.findOne({ name:req.body.name.toLowerCase() });
+        const doc = await Doc.findOne({ name:req.body.name });
         if (!doc) {
             return res.status(422).send("Doctor is not registered");
         }

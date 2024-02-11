@@ -18,4 +18,4 @@ connectDB();
 app.use("/api/docs",docRoute);
 app.use("/api/recept",receptRoute);
 
-app.listen(process.env.PORT,()=>console.log(`Running on Port ${process.env.PORT} `))
+app.listen(3006,()=>console.log(`Running on Port 3006 `))
