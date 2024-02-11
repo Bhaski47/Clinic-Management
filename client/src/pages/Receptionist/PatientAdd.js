@@ -13,6 +13,11 @@ function PatientAdd() {
   const [getNumber, setNumber] = useState(null);
   const [error, setError] = useState(null);
   const [loader, setLoader] = useState(false);
+  const [getnewPatName,setNewPatName] = useState("")
+  const [getnewPatAge,setNewPatAge] = useState("")
+  const [getnewPatPhno,setNewPatPhno] = useState("")
+  const [getnewPatAddr,setNewPatAddr] = useState("")
+  const [selectedGender, setSelectedGender] = useState('');
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -31,6 +36,21 @@ function PatientAdd() {
         setLoader(false);
     }
   };
+  const handleNewPatSubmit = async(e) =>{
+    try {
+      e.preventDefault();
+    const createPat = await axios.post("https://careconnect-5ssb.onrender.com/api/recept/receptregister",{
+      name:getnewPatName,
+      age:getnewPatAge,
+      gender:selectedGender,
+      phno:getnewPatPhno,
+      patPh:getnewPatPhno
+    })
+    console.log("Success")
+    } catch (error) {
+      console.log("Error ",error )
+    }
+  }
   useEffect(() => {
     const localData = localStorage.getItem("receptData");
     if (!localData) return navigate("/");
@@ -82,19 +102,19 @@ function PatientAdd() {
               <form className={styles.formContainer}>
                 <div className={styles.formGroup}>
                   <label htmlFor="patientName">Name Of The Patient</label>
-                  <input type="text" id="patientName" required />
+                  <input type="text" id="patientName" required onChange={(e)=>setNewPatName(e.target.value)} />
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="age">Age</label>
-                  <input type="number" id="age" required />
+                  <input type="number" id="age" required onChange={(e)=>setNewPatAge(e.target.value)} />
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="phoneNumber">Phone Number</label>
-                  <input type="number" id="phoneNumber" required />
+                  <input type="number" id="phoneNumber" required onChange={(e)=>setNewPatPhno(e.target.value)} />
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor="gender">Gender</label>
-                  <select id="gender" required>
+                  <select id="gender" required value={selectedGender} onChange={(e)=>setSelectedGender(e.target.value)}>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
@@ -106,9 +126,9 @@ function PatientAdd() {
                     cols="30"
                     rows="10"
                     required
-                  ></textarea>
+                  onChange={(e)=>setNewPatAddr(e.target.value)}></textarea>
                 </div>
-                <button type="submit" className={styles.buttons}>
+                <button type="submit" className={styles.buttons} onClick={handleNewPatSubmit}>
                   Submit
                 </button>
                 <h4 onClick={() => setExist((prev) => !prev)}>
