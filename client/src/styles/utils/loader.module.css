@@ -2,7 +2,7 @@
     --dim: 3rem;
     width: var(--dim);
     height: var(--dim);
-    position: relative;
+    position: absolute;
     animation: spin988 2s linear infinite;
   }
   

@@ -3,6 +3,8 @@
   padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 @font-face {
   font-family: NunitoLight;
   src: url('./assets/fonts/Nunito/static/Nunito-Light.ttf');
@@ -26,13 +28,13 @@ input[type=number] {
 
 body{
   
-  background-image: url('./assets/bg/14731307_rm218-bb-07.jpg');
+  background-image: url('./assets/img/14731307_rm218-bb-07.jpg');
   background-color: rgb(54, 33, 33);
-  /* background-position: center; */
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
-  /* background-color: #f5f5fa; */
+  background-color: #f5f5fa;
 }
 /* body {
   margin: 0;

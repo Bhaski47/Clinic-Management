@@ -6,18 +6,17 @@ import axios from "axios";
 
 function DoctorDash() {
   const initialData = {
-    _id: "65c7a279a9daa57852e12d8d",
-    name: "Bhaski",
-    email: "a@gmail.com",
-    password: "$2b$10$ciL/HGbQ6ywFofCLkjpXROd/DGyosiurFgG2btj3xIbsmqAUQj88m",
+    _id: "",
+    name: "",
+    email: "",
+    password: "",
     age: 8,
-    phno: "1234567890",
-    gender: "male",
+    phno: "",
+    gender: "",
     patConsult: [],
     __v: 0,
   };
-  const [tempData,setTempData] = useState("")
-  const [localData, setLocalData] = useState({ data: { data: initialData } }); // Update initial state
+  const [localData, setLocalData] = useState({ data: { data: initialData } });
   const [isFetch, setIsFetch] = useState(false);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -28,8 +27,6 @@ function DoctorDash() {
       const temp = await localStorage.getItem("docData");
       const parsedData = temp ? JSON.parse(temp) : {};
       setLocalData(parsedData)
-      // console.log(localData);
-      // console.log(temp)
       if (!temp) {
         navigate("/");
         return;
@@ -40,14 +37,6 @@ function DoctorDash() {
     fetchData();
 
   }, [navigate]);
-
-  // useEffect(() => {
-  //   if (tempData) {
-  //     setLocalData(tempData);
-  //     console.log(localData);
-  //   }
-  // }, [tempData]);
-
   useEffect(() => {
     const fetchData = async () => {
       const fetchID = localData.data.data._id;
@@ -67,32 +56,6 @@ function DoctorDash() {
       fetchData();
     }
   }, [localData]);
-
-  // ...
-
-  // const data = [
-  //   {
-  //     Name: "Bhaski",
-  //     Age: "30",
-  //     Time: new Date("2024-02-07T19:40:26.847Z").toLocaleDateString(),
-  //   },
-  //   {
-  //     Name: "Bhaski",
-  //     Age: "30",
-  //     Time: new Date("2024-02-07T19:40:26.847Z").toLocaleDateString(),
-  //   },
-  //   {
-  //     Name: "Bhaski",
-  //     Age: "30",
-  //     Time: new Date("2024-02-07T19:40:26.847Z").toLocaleDateString(),
-  //   },
-  //   {
-  //     Name: "Bhaski",
-  //     Age: "30",
-  //     Time: new Date("2024-02-07T19:40:26.847Z").toLocaleDateString(),
-  //   },
-  // ];
-
   return (
     <>
       <DocNavBar />

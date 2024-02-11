@@ -10,7 +10,6 @@ function DocNavBar() {
     let localData = localStorage.getItem("docData");
     if (!localData) return navigate("/");
     localData = JSON.parse(localData);
-    // console.log(localData.data.data.name);
     setName(localData.data.data.name);
   }, [navigate]);
   return (

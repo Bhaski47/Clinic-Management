@@ -1,218 +1,185 @@
-@media screen and (min-width: 1024px) {
-    .centerBox {
-      height: 100vh;
-      display: grid;
-      place-items: center;
-      background-image: url(../../assets/bg/16447966_v960-ning-05.jpg);
-    }
-  
-    .centerBox .content {
-      width: 25vw;
-      height: 80%;
-      border-radius: 20px;
-      /* background-color: white; */
-      border: 1px solid transparent;
-      backdrop-filter: blur(100px);
-      box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.779);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-evenly;
-    }
-  
-    .centerBox .content .header {
-      font-family: Ubuntu, "Courier New", Courier, monospace;
-      cursor: default;
-    }
-  
-    .centerBox .content .form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: Ubuntu;
-    }
-  
-    .centerBox .content .form .changeUser {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .centerBox .content .form .input {
-      margin: 0px 0 15px 0;
-      outline: none;
-      padding: 8px 10px;
-      width: calc(60% - 20px);
-      color: black;
-    }
-  
-    .centerBox .content .form .label {
-      font-size: 17px;
-      text-align: left;
-      width: 60%;
-    }
-  
-    .centerBox .content .form .btn {
-      color: #4c0098;
-      display: inline-block;
-      margin-top: 15px;
-      padding: 0.9rem 3.8rem;
-      font-size: 16px;
-      font-weight: 700;
-      border: 3px solid #8408ff;
-      cursor: pointer;
-      position: relative;
-      background-color: transparent;
-      text-decoration: none;
-      overflow: hidden;
-      z-index: 1;
-      font-family: inherit;
-    }
-  
-    .centerBox .content .form .btn::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #8408ff;
-      transform: translateX(-100%);
-      transition: all 0.3s;
-      z-index: -1;
-    }
-  
-    .centerBox .content .form .btn:hover::before {
-      transform: translateX(0);
-    }
-  
-    .centerBox .content .form .btn:hover {
-      transition: all 0.3s;
-      color: white;
-    }
-  
-    .centerBox .content .accessChange {
-      font-family: Ubuntu;
-      cursor: pointer;
-      font-size: 18px;
-    }
-  
-    .centerBox .content .accessChange:hover {
-      color: #eb0029;
-      transition: 0.3s ease-in-out;
-    }
-  }
-  
-  @media screen and (max-device-width: 480px) {
-    .centerBox {
-      height: 100vh;
-      display: grid;
-      place-items: center;
-      background-image: url(../../assets/bg/16447966_v960-ning-05.jpg);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  
-    .centerBox .content {
-      width: 80%;
-      height: 70%;
-      border-radius: 20px;
-      border: 1px solid transparent;
-      backdrop-filter: blur(100px);
-      box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.779);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-evenly;
-    }
-  
-    .centerBox .content .header {
-      font-family: Ubuntu, "Courier New", Courier, monospace;
-      cursor: default;
-    }
-  
-    .centerBox .content .form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: Ubuntu;
-    }
-  
-    .centerBox .content .form .changeUser {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .centerBox .content .form .input {
-      margin: 0px 0 15px 0;
-      outline: none;
-      padding: 8px 10px;
-      width: calc(60% - 20px);
-      color: black;
-    }
-  
-    .centerBox .content .form .label {
-      font-size: 17px;
-      text-align: left;
-      width: 60%;
-    }
-  
-    .centerBox .content .form .btn {
-      color: #4c0098;
-      display: inline-block;
-      margin-top: 15px;
-      padding: 0.9rem 3.8rem;
-      font-size: 16px;
-      font-weight: 700;
-      border: 3px solid #8408ff;
-      cursor: pointer;
-      position: relative;
-      background-color: transparent;
-      text-decoration: none;
-      overflow: hidden;
-      z-index: 1;
-      font-family: inherit;
-    }
-  
-    .centerBox .content .form .btn::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #8408ff;
-      transform: translateX(-100%);
-      transition: all 0.3s;
-      z-index: -1;
-    }
-  
-    .centerBox .content .form .btn:hover::before {
-      transform: translateX(0);
-    }
-  
-    .centerBox .content .form .btn:hover {
-      transition: all 0.3s;
-      color: white;
-    }
-  
-    .centerBox .content .accessChange {
-      font-family: Ubuntu;
-      cursor: pointer;
-      font-size: 18px;
-    }
-  
-    .centerBox .content .accessChange:hover {
-      color: #eb0029;
-      transition: 0.3s ease-in-out;
-    }
-  }
-  
+.webPage {
+  display: grid;
+  position: absolute;
+  place-content: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url('../../assets/img/authPageBG1.png');
+  background-size: cover;
+  /* background-position: ; */
+  /* background-color: red; */
+}
+
+.container {
+  width: 50vw;
+  height: 60vh;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+  /* background-color: #fff; */
+  backdrop-filter: blur(30px);
+  display: flex;
+  flex-direction: row;
+}
+.overlay{
+  background-color: red;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: translate(-45%, -45%);
+}
+.formContainer {
+  flex: 1;
+  border-radius: 30px 0 0 30px;
+  /* background-color: white; */
+  padding: 1rem;
+  position: relative;
+}
+
+.formContainer h2 {
+  margin-top: 10%;
+  position: relative;
+}
+
+.formContainer h2,
+p {
+  text-align: center;
+  font-family: NunitoReg;
+}
+.accessChange{
+  margin-top: 5%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: large;
+}
+.accessChange:hover{
+  color: #35cb80;
+}
+.form {
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .contentWrap:first-child{
+  margin-top: 17%;
+} */
+
+.contentWrap {
+  margin-top: 9%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: green; */
+  /* margin: auto; */
+}
+
+
+.contentWrap input {
+  /* align-self: center; */
+  font-size: large;
+  width: 220px;
+  height: 30px;
+  outline: none;
+  padding: 0 1rem;
+}
+
+.buttonWrap {
+  display: grid;
+  place-content: center;
+}
+
+.textContainer {
+  flex: 1;
+  /* border-radius: 0 30px 30px 0; */
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* margin-left:0 5rem; */
+  /* background-color: red; */
+}
+
+.textContainer h1 {
+  font-family: NunitoReg;
+  margin-top: 30%;
+  text-align: center;
+  position: relative;
+}
+
+.textContainer h1::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 75%;
+  background-color: red;
+}
+
+.textContainer p {
+  font-family: NunitoLight;
+  font-weight: 300;
+  width: 70%;
+  margin: auto;
+  margin-top: 4%;
+  text-wrap: balance;
+}
+
+.btn {
+  position: relative;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all .2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: black;
+  background-color: #35cb80;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.buttonAlign {
+  display: flex;
+  justify-content: center;
+  width: 118%;
+  /* background-color: red; */
+}
