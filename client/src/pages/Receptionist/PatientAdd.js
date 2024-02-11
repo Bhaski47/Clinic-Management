@@ -247,6 +247,7 @@ function PatientAdd() {
                       cols="30"
                       rows="10"
                       required
+                      placeholder="Optional"
                       onChange={(e) => setNewPatAddr(e.target.value)}
                     ></textarea>
                   </div>
