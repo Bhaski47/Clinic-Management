@@ -39,7 +39,7 @@ function PatientChecker() {
   const checkToken = async (e) => {
     e.preventDefault();
     if (!tokenValid) return;
-    const fetch = await axios.post("http://localhost:3006/api/docs/rettoken", {
+    const fetch = await axios.post("https://careconnect-5ssb.onrender.com/api/docs/rettoken", {
       id: tokenValid,
     });
     setDocname(fetch.data.data.docs.name);
@@ -59,7 +59,7 @@ function PatientChecker() {
     if (!enteredPres) return ;
     try {
       const sendData = await axios.post(
-        "http://localhost:3006/api/docs/enqpat",
+        "https://careconnect-5ssb.onrender.com/api/docs/enqpat",
         {
           patid: patId,
           id: localData.data.data._id,
