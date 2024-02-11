@@ -1,0 +1,32 @@
+.wrapper{
+    margin-left: 24vw;
+    padding-top: 2%;
+}
+.container{
+    border-radius: 30px;
+    margin-right: 5%;
+    height: 80vh;
+    padding: 3rem;
+    /* background-color: red; */
+    border: 1px solid transparent;
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+}
+
+.container h1,h2{
+    user-select: none;
+    font-family: NunitoLight;
+    font-weight: 100;
+}
+
+/* .container h4{
+    user-select: none;
+    font-family: NunitoLight;
+    font-weight: 100;
+} */
+
+.container p{
+    text-align: start;
+    font-family: Ubuntu,sans-serif;
+    color: gray;
+    font-style: italic;
+}

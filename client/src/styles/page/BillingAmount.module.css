@@ -1,4 +1,4 @@
-.container {
+/* .container {
     padding-top: 7rem;
     padding-left: 22%;
 }
@@ -11,13 +11,13 @@
     border-radius: 30px;
     backdrop-filter: blur(100px);
     box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
-    /* border: 10px solid black; */
+    
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     padding: 1rem;
-    /* background-color: red; */
+    
 }
 
 
@@ -25,12 +25,11 @@
     font-family: 'NunitoLight', sans-serif;
     display: flex;
     flex-direction: column;
-    /* padding: 20px; Add padding for better appearance */
+    
 }
 
 .formGroup {
     margin-bottom: 15px;
-    /* Adjust the spacing between form groups */
     display: flex;
     flex-direction: column;
 }
@@ -64,4 +63,123 @@ textarea {
 
 .buttons:hover {
     background-color: #45a049;
+} */
+
+.wrapper{
+    margin-left: 24vw;
+    padding-top: 2%;
 }
+.container{
+    overflow: auto;
+    border-radius: 30px;
+    margin-right: 5%;
+    height: 80vh;
+    padding: 3rem;
+    /* background-color: red; */
+    border: 1px solid transparent;
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+}
+
+.container h1{
+    user-select: none;
+    font-family: NunitoLight;
+    font-weight: 100;
+}
+
+
+.checkNoBox {
+    font-family: NunitoReg;
+    width: 40%;
+    margin-left: calc(20% + 20px);
+    height: 65vh;
+    border-radius: 30px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    
+}
+
+
+.formContainer {
+    font-family: 'NunitoLight', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    margin-bottom: 5px;
+}
+
+.formGroup textarea {
+    resize: none;
+}
+
+.formGroup input,
+select,
+textarea {
+    outline: none;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.btn {
+    position: relative;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: black;
+    background-color: #35cb80;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+  
+  
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }

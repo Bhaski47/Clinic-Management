@@ -13,10 +13,12 @@ function PatientAdd() {
   const [getNumber, setNumber] = useState(null);
   const [error, setError] = useState(null);
   const [loader, setLoader] = useState(false);
-  const [getnewPatName,setNewPatName] = useState("")
-  const [getnewPatAge,setNewPatAge] = useState("")
-  const [getnewPatPhno,setNewPatPhno] = useState("")
-  const [getnewPatAddr,setNewPatAddr] = useState("")
+  const [getnewPatName, setNewPatName] = useState("");
+  const [getnewPatAge, setNewPatAge] = useState("");
+  const [getnewPatPhno, setNewPatPhno] = useState("");
+  const [getnewPatAddr, setNewPatAddr] = useState("");
+  const [fetchTokId,setFetchTokid] = useState(false);
+  const [isFetched,setFetchedID] = useState(0)
   const [selectedGender, setSelectedGender] = useState("Female");
   const handleSubmit = async (e) => {
     try {
@@ -29,29 +31,35 @@ function PatientAdd() {
           patNo: getNumber,
         }
       );
-      console.log("Generated ID : "+fetchData.data.tokenID);
+      setFetchedID(fetchData.data.tokenID);
+      setFetchTokid(true);
+      console.log("Generated ID : " + fetchData.data.tokenID);
       setLoader(false);
     } catch (err) {
-        setError(err);
-        setLoader(false);
+      setError(err);
+      setLoader(false);
     }
   };
-  const handleNewPatSubmit = async(e) =>{
+  const handleNewPatSubmit = async (e) => {
     try {
       e.preventDefault();
       // console.log(selectedGender);
-    const createPat = await axios.post("https://careconnect-5ssb.onrender.com/api/recept/receptregister",{
-      name:getnewPatName,
-      age:getnewPatAge,
-      gender:selectedGender,
-      phno:getnewPatPhno,
-      patPh:getnewPatPhno
-    })
-    // console.log("Success")
+      await axios.post(
+        "https://careconnect-5ssb.onrender.com/api/recept/receptregister",
+        {
+          name: getnewPatName,
+          age: getnewPatAge,
+          gender: selectedGender,
+          phno: getnewPatPhno,
+          patPh: getnewPatPhno,
+          address:getnewPatAddr
+        }
+      );
+      // console.log("Success")
     } catch (error) {
-      console.log("Error ",error )
+      console.log("Error ", error);
     }
-  }
+  };
   useEffect(() => {
     const localData = localStorage.getItem("receptData");
     if (!localData) return navigate("/");
@@ -59,7 +67,7 @@ function PatientAdd() {
   return (
     <>
       <NavBar />
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         {isExist && !loader && (
           <div className={styles.checkNoBox}>
             <label>Enter The Patients Phone Number</label>
@@ -139,6 +147,125 @@ function PatientAdd() {
             </div>
           </div>
         )}
+      </div> */}
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <h1>Patient Management</h1>
+          <p>(Add Patient or Give Token Number)</p>
+          {isExist && !fetchTokId && !loader && (
+            <form className={styles.checkNoBox} onSubmit={handleSubmit}>
+              <label>Enter The Patients Phone Number</label>
+              <input
+                type="number"
+                onChange={(e) => setNumber(e.target.value)}
+                className={styles.search}
+                required
+              />
+              <label>Enter The Doctor's Name</label>
+              <input
+                type="text"
+                onChange={(e) => setDocname(e.target.value)}
+                className={styles.search}
+                required
+              />
+              <button type="submit" className={styles.btn}>
+                Submit
+              </button>
+              {error && (
+                <p className={styles.errorMessage}>Patient Already Exist</p>
+              )}
+              <div>
+                <span
+                  onClick={() => setExist((prev) => !prev)}
+                  className={styles.signupMessage}
+                >
+                  Patient Not Registered?
+                </span>
+              </div>
+            </form>
+          )}
+          {
+            isExist && fetchTokId &&
+            <>
+            <h1 className={styles.tokId}>Your ID</h1>
+            <h1 className={styles.tokId}>{isFetched}</h1>
+            <button className={styles.btn} onClick={()=>setFetchTokid(false)}>Close</button>
+            </>
+          }
+          {isExist && loader && (
+            <div className={styles.checkNoBox}>
+              <Loader />
+            </div>
+          )}
+          {!isExist && (
+            // <div className={styles.addPatient}>
+              <div className={styles.addContainer}>
+                <form className={styles.formContainer} onSubmit={handleNewPatSubmit}>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="patientName">Name Of The Patient</label>
+                    <input
+                      type="text"
+                      id="patientName"
+                      required
+                      onChange={(e) => setNewPatName(e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="age">Age</label>
+                    <input
+                      type="number"
+                      id="age"
+                      required
+                      onChange={(e) => setNewPatAge(e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <input
+                      type="number"
+                      id="phoneNumber"
+                      required
+                      onChange={(e) => setNewPatPhno(e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="gender">Gender</label>
+                    <select
+                      id="gender"
+                      required
+                      value={selectedGender}
+                      onChange={(e) => setSelectedGender(e.target.value)}
+                    >
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="address">Address</label>
+                    <textarea
+                      id="address"
+                      cols="30"
+                      rows="10"
+                      required
+                      onChange={(e) => setNewPatAddr(e.target.value)}
+                    ></textarea>
+                  </div>
+                  <div style={{display:'grid',placeContent:'center'}}>
+                  <button
+                    type="submit"
+                    className={styles.btn}
+                  >
+                    Submit
+                  </button>
+                  </div>
+                  <h3 className={styles.changeText} onClick={() => setExist((prev) => !prev)}>
+                    Does The Patient Already Have An Account ?
+                  </h3>
+                </form>
+              </div>
+            // </div>
+          )}
+        </div>
       </div>
     </>
   );

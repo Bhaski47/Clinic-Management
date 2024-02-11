@@ -1,23 +1,19 @@
-import React from 'react';
-import styles from '../styles/components/AuthHeader.module.css';
+import React, { useEffect, useState } from 'react';
 import SideBar from './SideBar';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  useEffect(() => {
+    let localData = localStorage.getItem("receptData");
+    if (!localData) return navigate("/");
+    localData = JSON.parse(localData);
+    setName(localData.data.name);
+  }, [navigate]);
   return (
     <>
-      <div className={styles.navContainer}>
-        <div className={styles.navBar}>
-          <div></div>
-          <div className={styles.userInfo}>
-            <div></div>
-            <h3 className={styles.userName}>Bhaskar</h3>
-            <button className={`${styles.button} ${styles.type1}`}>
-              <span className={styles.btntxt}>Sign Out</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <SideBar />
+      <SideBar name={name} />
     </>
   )
 }
