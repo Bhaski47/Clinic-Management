@@ -55,7 +55,7 @@ function DoctorDash() {
       // console.log(fetchID);
       if (fetchID) {
         const response = await axios.post(
-          "http://localhost:3006/api/docs/retdoc",{
+          "https://careconnect-5ssb.onrender.com/api/docs/retdoc",{
             id:fetchID
           }
         );

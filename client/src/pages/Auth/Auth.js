@@ -17,7 +17,7 @@ function Auth() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const token = await axios.post("http://localhost:3006/api/recept/logrecept", {
+            const token = await axios.post("https://careconnect-5ssb.onrender.com/api/recept/logrecept", {
                 password: pass,
                 email: email,
             });
@@ -43,7 +43,7 @@ function Auth() {
             password: pass,
         };
         try {
-            let tok = await axios.post("http://localhost:3006/api/docs/logdoc/", data);
+            let tok = await axios.post("https://careconnect-5ssb.onrender.com/api/docs/logdoc/", data);
             tok = JSON.stringify(tok);
             localStorage.setItem("docData", tok);
             // console.log(data.password)

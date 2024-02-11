@@ -32,7 +32,7 @@ function ReceptionistDash() {
 
         if (parsedLocalData.data) {
           const response = await axios.post(
-            "http://localhost:3006/api/recept/retrecept",
+            "https://careconnect-5ssb.onrender.com/api/recept/retrecept",
             { id: parsedLocalData.data._id }
           );
           // console.log(response)

@@ -25,7 +25,7 @@ function BillingAmount() {
       e.preventDefault();
     if (!patNo) return;
     const patDetails = await axios.post(
-      "http://localhost:3006/api/recept/retrpat",
+      "https://careconnect-5ssb.onrender.com/api/recept/retrpat",
       { phno: patNo }
     );
     setPatName(patDetails.data.name);
@@ -41,7 +41,7 @@ function BillingAmount() {
     e.preventDefault();
     if (isCheck === false) return;
     if (!amount) return;
-    const response = await axios.post("http://localhost:3006/api/recept/bill", {
+    const response = await axios.post("https://careconnect-5ssb.onrender.com/api/recept/bill", {
       patphno: patNo,
       phno: receptData.data.phno,
       name: docName,
