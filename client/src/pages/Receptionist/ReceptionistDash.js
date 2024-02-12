@@ -8,12 +8,11 @@ function ReceptionistDash() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [receptData, setReceptData] = useState({});
-  const [totPat,setTotpat] = useState(0);
+  const [totPat, setTotpat] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const localData = await localStorage.getItem("receptData");
-
         if (!localData) {
           navigate("/");
           return;
@@ -32,6 +31,7 @@ function ReceptionistDash() {
 
         if (parsedLocalData.data) {
           const response = await axios.post(
+            // "http://localhost:3006/api/recept/retrecept",
             "https://careconnect-5ssb.onrender.com/api/recept/retrecept",
             { id: parsedLocalData.data._id }
           );
@@ -45,7 +45,7 @@ function ReceptionistDash() {
             return prevData;
           });
           setTotpat(response.data.data.doctor.length);
-          // console.log("data: ", data);
+          console.log("data: ", data);
         }
 
         // console.log(receptData);
@@ -60,74 +60,51 @@ function ReceptionistDash() {
   return (
     <>
       <NavBar />
-        {/* <div className={styles.tableContainer}>
-          <div className={styles.searchBar}>
-            <input type="text" className={styles.search} placeholder="Search" />
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <h1>Dashboard</h1>
+          <br />
+          <div className={styles.totalPatients}>
+            <h2>Total Patients</h2>
+            <h1>{totPat}</h1>
           </div>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Name Of Doctor</th>
-                <th>Name Of Patient</th>
-                <th>Time</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody className={styles.patient}>
-              {data.doctor &&
-                data.doctor.map((item, index) => {
-                  let convertedDate = new Date(item.createdAt).toLocaleString();
-                  return(
-                    <tr key={index} className={styles.patDetails}>
-                      <td>{index + 1}</td>
-                      <td>{item.docObjectId.name}</td>
-                      <td>{item.patId.name}</td>
-                      <td>{convertedDate}</td>
-                      <td>{item.amount}</td>
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>
-        </div> */}
-        <div className={styles.wrapper}>
-          <div className={styles.container}>
-            <h1>Dashboard</h1>
-            <br />
-            <div className={styles.totalPatients}>
-              <h2>Total Patients</h2>
-              <h1>{totPat}</h1>
-            </div>
-            <h1 style={{textAlign:'center'}}>All Patients And Doctor Records</h1>
+          <h1 style={{ textAlign: "center" }}>
+            All Patients And Doctor Records
+          </h1>
+          <div className={styles.tableContainer}>
             <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Name Of Doctor</th>
-                <th>Name Of Patient</th>
-                <th>Time</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody className={styles.patient}>
-              {data.doctor &&
-                data.doctor.map((item, index) => {
-                  let convertedDate = new Date(item.createdAt).toLocaleString();
-                  return(
-                    <tr key={index} className={styles.patDetails}>
-                      <td>{index + 1}</td>
-                      <td>{item.docObjectId.name}</td>
-                      <td>{item.patId.name}</td>
-                      <td>{convertedDate}</td>
-                      <td>{item.amount}</td>
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Name Of Doctor</th>
+                  <th>Name Of Patient</th>
+                  <th>Ph No</th>
+                  <th>Time</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody className={styles.patient}>
+                {data.doctor &&
+                  data.doctor.map((item, index) => {
+                    let convertedDate = new Date(
+                      item.createdAt
+                    ).toLocaleString();
+                    return (
+                      <tr key={index} className={styles.patDetails}>
+                        <td>{index + 1}</td>
+                        <td>{item.docObjectId.name}</td>
+                        <td>{item.patId.name}</td>
+                        <td>{item.patId.phno}</td>
+                        <td>{convertedDate}</td>
+                        <td>{item.amount}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
           </div>
         </div>
+      </div>
     </>
   );
 }

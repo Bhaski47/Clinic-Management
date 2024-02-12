@@ -18,12 +18,18 @@
     font-weight: 100;
 }
 
-/* .container h4{
+.subHead{
     user-select: none;
     font-family: NunitoLight;
     font-weight: 100;
-} */
-
+    font-style: italic;
+    /* background-color: red; */
+    text-align: left;
+}
+.container h2{
+    display: flex;
+    gap: 10px;
+}
 .container p{
     text-align: start;
     font-family: Ubuntu,sans-serif;

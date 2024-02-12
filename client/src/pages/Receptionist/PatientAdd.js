@@ -25,6 +25,7 @@ function PatientAdd() {
       e.preventDefault();
       setLoader(true);
       const fetchData = await axios.post(
+        // "http://localhost:3006/api/recept/createtoken",
         "https://careconnect-5ssb.onrender.com/api/recept/createtoken",
         {
           docname: getDocname,

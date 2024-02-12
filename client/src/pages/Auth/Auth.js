@@ -23,6 +23,7 @@ function Auth() {
     setLoader(true);
     try {
       const token = await axios.post(
+        // "http://localhost:3006/api/recept/logrecept",
         "https://careconnect-5ssb.onrender.com/api/recept/logrecept",
         {
           password: pass,
@@ -56,6 +57,7 @@ function Auth() {
     };
     try {
       let tok = await axios.post(
+        // "http://localhost:3006/api/docs/logdoc/",
         "https://careconnect-5ssb.onrender.com/api/docs/logdoc/",
         data
       );

@@ -127,18 +127,23 @@
     }
 }
 
-
-.table {
-    text-align: center;
-    margin-top: 5rem;
+.tableContainer{
+    height: 60%;
     overflow: auto;
     border: 1px solid transparent;
     border-radius: 30px;
-    border-collapse: separate;
-    border-spacing: 8px;
     box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+    text-align: center;
+    margin-top: 2rem;
+    /* margin-bottom: 5rem; */
+    /* overflow: auto; */
+    /* border-collapse: separate; */
+    border-spacing: 8px;
     width: 100%;
-    /* height: 30vh; */
+    /* height: 30%; */
 }
 
 .table th {
