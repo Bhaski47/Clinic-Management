@@ -3,18 +3,18 @@ import styles from "../../styles/page/PatientChecker.module.css";
 import DocNavBar from "../../components/Doctor/DocNavBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loader from "../../utils/Loader";
 
 function PatientChecker() {
   const navigate = useNavigate();
   const init = {};
   const [localData, setLocalData] = useState(init);
+  const [isLoad, setLoader] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const tempData = localStorage.getItem("docData");
         setLocalData(JSON.parse(tempData));
-        // console.log(JSON.parse(localData));
-        // console.log("local " + localData);
         if (!tempData) {
           navigate("/");
           return;
@@ -35,10 +35,18 @@ function PatientChecker() {
   const prescriptionsFromServer = [];
   const [prescription, setPrescription] = useState(prescriptionsFromServer);
   const [enteredPres, setEnteredPres] = useState("");
-  //   console.log(tokenValid);
+  function clearData(){
+    setDocname("");
+    setName("");
+    setAge("");
+    setPhno("");
+    setPrescription([]);
+    setPatid("");
+  }
   const checkToken = async (e) => {
     e.preventDefault();
-    if (!tokenValid) return;
+    if (!tokenValid) return console.log("Enter Token Number");
+    setLoader(true);
     const fetch = await axios.post(
       "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
       {
@@ -52,15 +60,16 @@ function PatientChecker() {
     setPrescription(fetch.data.data.patient.combinedData);
     setPatid(fetch.data.data.patient._id);
     setTokenChecked(true);
+    setLoader(false);
     // console.log(fetch);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!tokenValid) return;
-    if (!tokenChecked) return;
-    // console.log(1);
-    if (!enteredPres) return;
+    if (!tokenValid) return console.log("Enter Token Number");
+    if (!tokenChecked) return console.log("Check The Token Id");
+    if (!enteredPres) return console.log("Enter The Prescription Details");
+    setLoader(true);
     try {
       await axios.post(
         "https://careconnect-5ssb.onrender.com/api/docs/enqpat",
@@ -70,9 +79,12 @@ function PatientChecker() {
           pres: enteredPres,
         }
       );
-      // console.log(sendData.data);
+      setLoader(false);
       setTokenChecked(false);
+      console.log("Added Successfully")
+      clearData();
     } catch (error) {
+      setLoader(false);
       console.log("error" + error);
     }
   };
@@ -83,6 +95,13 @@ function PatientChecker() {
         <div className={styles.container}>
           <h1>Patient Checker</h1>
           <p>To Diagnose The Patient</p>
+          {isLoad && (
+            <div className={styles.loader}>
+              <Loader />
+            </div>
+          )}
+          {!isLoad
+          &&
           <div className={styles.addContainer}>
             <form className={styles.formContainer}>
               <div className={styles.formGroup}>
@@ -109,7 +128,14 @@ function PatientChecker() {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="age">Age</label>
-                <input type="number" id="age" required disabled value={age} placeholder="Enter Token ID" />
+                <input
+                  type="number"
+                  id="age"
+                  required
+                  disabled
+                  value={age}
+                  placeholder="Enter Token ID"
+                />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="phoneNumber">Phone Number</label>
@@ -132,7 +158,7 @@ function PatientChecker() {
                   onChange={(e) => setTokenValid(e.target.value)}
                   value={tokenValid}
                 />
-                <div style={{display:'grid',placeContent:'center'}}>
+                <div style={{ display: "grid", placeContent: "center" }}>
                   <button
                     type="submit"
                     className={styles.btn}
@@ -162,7 +188,7 @@ function PatientChecker() {
                   onChange={(e) => setEnteredPres(e.target.value)}
                 ></textarea>
               </div>
-              <div style={{display:'grid',placeContent:'center'}}>
+              <div style={{ display: "grid", placeContent: "center" }}>
                 <button
                   type="submit"
                   className={styles.btn}
@@ -173,6 +199,8 @@ function PatientChecker() {
               </div>
             </form>
           </div>
+          }
+          
         </div>
       </div>
     </>
