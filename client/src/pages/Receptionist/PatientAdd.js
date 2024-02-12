@@ -11,7 +11,8 @@ function PatientAdd() {
   const [isExist, setExist] = useState(true);
   const [getDocname, setDocname] = useState(null);
   const [getNumber, setNumber] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({});
+  const [patCheckError,setPatCheckError] = useState(false);
   const [loader, setLoader] = useState(false);
   const [getnewPatName, setNewPatName] = useState("");
   const [getnewPatAge, setNewPatAge] = useState("");
@@ -23,6 +24,7 @@ function PatientAdd() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      clearError();
       setLoader(true);
       const fetchData = await axios.post(
         // "http://localhost:3006/api/recept/createtoken",
@@ -37,13 +39,16 @@ function PatientAdd() {
       console.log("Generated ID : " + fetchData.data.tokenID);
       setLoader(false);
     } catch (err) {
-      setError(err);
+      // setError(err);
+      // setPatCheckError(true)
       setLoader(false);
+      // console.log(error)
     }
   };
   const handleNewPatSubmit = async (e) => {
     try {
       e.preventDefault();
+      clearError()
       // console.log(selectedGender);
       await axios.post(
         "https://careconnect-5ssb.onrender.com/api/recept/receptregister",
@@ -65,90 +70,13 @@ function PatientAdd() {
     const localData = localStorage.getItem("receptData");
     if (!localData) return navigate("/");
   }, [navigate]);
+  function clearError(){
+    setError(false);
+    setPatCheckError(false);
+  }
   return (
     <>
       <NavBar />
-      {/* <div className={styles.container}>
-        {isExist && !loader && (
-          <div className={styles.checkNoBox}>
-            <label>Enter The Patients Phone Number</label>
-            <input
-              type="number"
-              onChange={(e) => setNumber(e.target.value)}
-              className={styles.search}
-              required
-            />
-            <label>Enter The Doctor's Name</label>
-            <input
-              type="text"
-              onChange={(e) => setDocname(e.target.value)}
-              className={styles.search}
-              required
-            />
-            <button type="submit" onClick={handleSubmit}>
-              Submit
-            </button>
-            {error && (
-              <p className={styles.errorMessage}>Patient Already Exist</p>
-            )}
-            <div>
-              <span
-                onClick={() => setExist((prev) => !prev)}
-                className={styles.signupMessage}
-              >
-                Patient Not Registered?
-              </span>
-            </div>
-          </div>
-        )}
-        {isExist && loader && (
-          <div className={styles.checkNoBox}>
-            <Loader />
-          </div>
-        )}
-        {!isExist && (
-          <div className={styles.addPatient}>
-            <div className={styles.addContainer}>
-              <form className={styles.formContainer}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="patientName">Name Of The Patient</label>
-                  <input type="text" id="patientName" required onChange={(e)=>setNewPatName(e.target.value)} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="age">Age</label>
-                  <input type="number" id="age" required onChange={(e)=>setNewPatAge(e.target.value)} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <input type="number" id="phoneNumber" required onChange={(e)=>setNewPatPhno(e.target.value)} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="gender">Gender</label>
-                  <select id="gender" required value={selectedGender} onChange={(e)=>setSelectedGender(e.target.value)}>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="address">Address</label>
-                  <textarea
-                    id="address"
-                    cols="30"
-                    rows="10"
-                    required
-                  onChange={(e)=>setNewPatAddr(e.target.value)}></textarea>
-                </div>
-                <button type="submit" className={styles.buttons} onClick={handleNewPatSubmit}>
-                  Submit
-                </button>
-                <h4 onClick={() => setExist((prev) => !prev)}>
-                  Does The Patient Already Have An Account ?
-                </h4>
-              </form>
-            </div>
-          </div>
-        )}
-      </div> */}
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <h1>Patient Management</h1>
@@ -161,6 +89,7 @@ function PatientAdd() {
                 onChange={(e) => setNumber(e.target.value)}
                 className={styles.search}
                 required
+                // style={patCheckError && {border:'1px solid red'}}
               />
               <label>Enter The Doctor's Name</label>
               <input
@@ -168,13 +97,14 @@ function PatientAdd() {
                 onChange={(e) => setDocname(e.target.value)}
                 className={styles.search}
                 required
+                // style={error ? {border:'1px solid red'} : {}}
               />
+              {/* {patCheckError && (
+                <p className={styles.errorMessage}>{error}</p>
+              )} */}
               <button type="submit" className={styles.btn}>
                 Submit
               </button>
-              {error && (
-                <p className={styles.errorMessage}>Patient Already Exist</p>
-              )}
               <div>
                 <span
                   onClick={() => setExist((prev) => !prev)}
@@ -199,7 +129,6 @@ function PatientAdd() {
             </div>
           )}
           {!isExist && (
-            // <div className={styles.addPatient}>
               <div className={styles.addContainer}>
                 <form className={styles.formContainer} onSubmit={handleNewPatSubmit}>
                   <div className={styles.formGroup}>
@@ -265,7 +194,6 @@ function PatientAdd() {
                   </h3>
                 </form>
               </div>
-            // </div>
           )}
         </div>
       </div>

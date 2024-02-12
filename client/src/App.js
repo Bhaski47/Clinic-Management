@@ -6,6 +6,7 @@ import DoctorDash from "./pages/Doctor/DoctorDash";
 import PatientChecker from "./pages/Doctor/PatientChecker";
 import Auth from "./pages/Auth/Auth";
 import UserInfo from "./pages/Receptionist/UserInfo";
+import UserDocInfo from "./pages/Doctor/UserDocInfo";
 
 function App() {
   const router = createBrowserRouter([
@@ -36,6 +37,10 @@ function App() {
     {
       path: "/recept/userinfo",
       element: <UserInfo />,
+    },
+    {
+      path: "/doc/dash/docinfo",
+      element: <UserDocInfo />,
     },
   ]);
 

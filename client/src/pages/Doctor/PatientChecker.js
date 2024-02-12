@@ -20,7 +20,7 @@ function PatientChecker() {
           return;
         }
       } catch (err) {
-        console.log("err "+err)
+        console.log("err " + err);
       }
     };
     fetchData();
@@ -39,9 +39,12 @@ function PatientChecker() {
   const checkToken = async (e) => {
     e.preventDefault();
     if (!tokenValid) return;
-    const fetch = await axios.post("https://careconnect-5ssb.onrender.com/api/docs/rettoken", {
-      id: tokenValid,
-    });
+    const fetch = await axios.post(
+      "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
+      {
+        id: tokenValid,
+      }
+    );
     setDocname(fetch.data.data.docs.name);
     setName(fetch.data.data.patient.name);
     setAge(fetch.data.data.patient.age);
@@ -56,9 +59,10 @@ function PatientChecker() {
     e.preventDefault();
     if (!tokenValid) return;
     if (!tokenChecked) return;
-    if (!enteredPres) return ;
+    // console.log(1);
+    if (!enteredPres) return;
     try {
-      const sendData = await axios.post(
+      await axios.post(
         "https://careconnect-5ssb.onrender.com/api/docs/enqpat",
         {
           patid: patId,
@@ -75,8 +79,10 @@ function PatientChecker() {
   return (
     <>
       <DocNavBar />
-      <div className={styles.container}>
-        <div className={styles.patientChecker}>
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <h1>Patient Checker</h1>
+          <p>To Diagnose The Patient</p>
           <div className={styles.addContainer}>
             <form className={styles.formContainer}>
               <div className={styles.formGroup}>
@@ -85,6 +91,7 @@ function PatientChecker() {
                   type="text"
                   id="patientName"
                   required
+                  placeholder="Enter Token ID"
                   disabled
                   value={docName}
                 />
@@ -96,12 +103,13 @@ function PatientChecker() {
                   id="patientName"
                   required
                   disabled
+                  placeholder="Enter Token ID"
                   value={name}
                 />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="age">Age</label>
-                <input type="number" id="age" required disabled value={age} />
+                <input type="number" id="age" required disabled value={age} placeholder="Enter Token ID" />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="phoneNumber">Phone Number</label>
@@ -110,15 +118,11 @@ function PatientChecker() {
                   id="phoneNumber"
                   required
                   disabled
+                  placeholder="Enter Token ID"
                   value={phno}
                 />
               </div>
               <div className={styles.formGroup}>
-                {/* <label htmlFor="gender">Gender</label>
-                                <select id="gender" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select> */}
                 <label htmlFor="token">Token</label>
                 <input
                   type="number"
@@ -128,18 +132,19 @@ function PatientChecker() {
                   onChange={(e) => setTokenValid(e.target.value)}
                   value={tokenValid}
                 />
-                <button
-                  type="submit"
-                  className={styles.buttons}
-                  onClick={checkToken}
-                >
-                  Check
-                </button>
+                <div style={{display:'grid',placeContent:'center'}}>
+                  <button
+                    type="submit"
+                    className={styles.btn}
+                    onClick={checkToken}
+                  >
+                    Check
+                  </button>
+                </div>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="address">Previous Consultations</label>
                 {prescription.map((data, index) => {
-                  //   const parsedPrescription = JSON.parse(data.prescription);
                   return (
                     <li key={index}>
                       {data.doctorName}-{data.prescription}
@@ -157,13 +162,15 @@ function PatientChecker() {
                   onChange={(e) => setEnteredPres(e.target.value)}
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className={styles.buttons}
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
+              <div style={{display:'grid',placeContent:'center'}}>
+                <button
+                  type="submit"
+                  className={styles.btn}
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -128,6 +128,8 @@ textarea {
 .wrapper{
     margin-left: 24vw;
     padding-top: 2%;
+    /* height: 100%; */
+    /* width: 77%; */
 }
 .container{
     overflow: auto;
@@ -181,6 +183,7 @@ input::-webkit-inner-spin-button {
 
 .checkNoBox label {
     font-size: 1.3rem;
+    /* font-family: Ubuntu; */
 }
 
 .search {
@@ -188,7 +191,7 @@ input::-webkit-inner-spin-button {
     width: 15vw;
     outline: none;
     padding-left: 1.2rem;
-    border-radius: 30px;
+    border-radius: 10px;
     border: 1.5px solid gray;
     transition: all 0.2s ease-in-out;
 }
