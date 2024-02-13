@@ -34,7 +34,6 @@ function PatientAdd() {
       );
       setFetchedID(fetchData.data.tokenID);
       setFetchTokid(true);
-      clearDetails();
       setLoader(false);
     } catch (err) {
       setLoader(false);
@@ -55,7 +54,6 @@ function PatientAdd() {
           address:getnewPatAddr
         }
       );
-      clearDetails();
       success("Patient Added Successfully");
     } catch (error) {
       errorToast("Failed To Add Patient")
@@ -65,16 +63,6 @@ function PatientAdd() {
     const localData = localStorage.getItem("receptData");
     if (!localData) return navigate("/");
   }, [navigate]);
-  function clearDetails(){
-    setDocname("");
-    getNumber("");
-    getDocname("");
-    getnewPatAddr("");
-    getnewPatName("");
-    getnewPatPhno("");
-    getnewPatAge("");
-    setSelectedGender("");
-  }
   const success = (value) =>toast.success(value);
   const errorToast = (value) =>toast.error(value);
 
