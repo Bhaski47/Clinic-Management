@@ -57,7 +57,7 @@ function BillingAmount() {
       if (isCheck === false) return errorToast("Please Enter The Above Credentials");
       if (!amount) return;
       setIsLoad(true);
-      console.log(receptData.data.phno)
+      console.log(receptData)
       const response = await axios.post(
         // "http://localhost:3006/api/recept/bill",
         "https://careconnect-5ssb.onrender.com/api/recept/bill",
