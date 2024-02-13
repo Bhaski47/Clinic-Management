@@ -5,14 +5,13 @@ import Loader from "../../utils/Loader";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function PatientAdd() {
   const navigate = useNavigate();
   const [isExist, setExist] = useState(true);
-  const [getDocname, setDocname] = useState(null);
-  const [getNumber, setNumber] = useState(null);
-  const [error, setError] = useState({});
-  const [patCheckError,setPatCheckError] = useState(false);
+  const [getDocname, setDocname] = useState("");
+  const [getNumber, setNumber] = useState("");
   const [loader, setLoader] = useState(false);
   const [getnewPatName, setNewPatName] = useState("");
   const [getnewPatAge, setNewPatAge] = useState("");
@@ -24,7 +23,6 @@ function PatientAdd() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      clearError();
       setLoader(true);
       const fetchData = await axios.post(
         // "http://localhost:3006/api/recept/createtoken",
@@ -36,20 +34,16 @@ function PatientAdd() {
       );
       setFetchedID(fetchData.data.tokenID);
       setFetchTokid(true);
-      console.log("Generated ID : " + fetchData.data.tokenID);
+      clearDetails();
       setLoader(false);
     } catch (err) {
-      // setError(err);
-      // setPatCheckError(true)
       setLoader(false);
-      // console.log(error)
+      errorToast("Failed To Fetch Data")
     }
   };
   const handleNewPatSubmit = async (e) => {
     try {
       e.preventDefault();
-      clearError()
-      // console.log(selectedGender);
       await axios.post(
         "https://careconnect-5ssb.onrender.com/api/recept/receptregister",
         {
@@ -61,24 +55,35 @@ function PatientAdd() {
           address:getnewPatAddr
         }
       );
-      // console.log("Success")
+      clearDetails();
+      success("Patient Added Successfully");
     } catch (error) {
-      console.log("Error ", error);
+      errorToast("Failed To Add Patient")
     }
   };
   useEffect(() => {
     const localData = localStorage.getItem("receptData");
     if (!localData) return navigate("/");
   }, [navigate]);
-  function clearError(){
-    setError(false);
-    setPatCheckError(false);
+  function clearDetails(){
+    setDocname("");
+    getNumber("");
+    getDocname("");
+    getnewPatAddr("");
+    getnewPatName("");
+    getnewPatPhno("");
+    getnewPatAge("");
+    setSelectedGender("");
   }
+  const success = (value) =>toast.success(value);
+  const errorToast = (value) =>toast.error(value);
+
   return (
     <>
       <NavBar />
       <div className={styles.wrapper}>
         <div className={styles.container}>
+          <Toaster/>
           <h1>Patient Management</h1>
           <p>(Add Patient or Give Token Number)</p>
           {isExist && !fetchTokId && !loader && (
@@ -89,7 +94,6 @@ function PatientAdd() {
                 onChange={(e) => setNumber(e.target.value)}
                 className={styles.search}
                 required
-                // style={patCheckError && {border:'1px solid red'}}
               />
               <label>Enter The Doctor's Name</label>
               <input
@@ -97,11 +101,7 @@ function PatientAdd() {
                 onChange={(e) => setDocname(e.target.value)}
                 className={styles.search}
                 required
-                // style={error ? {border:'1px solid red'} : {}}
               />
-              {/* {patCheckError && (
-                <p className={styles.errorMessage}>{error}</p>
-              )} */}
               <button type="submit" className={styles.btn}>
                 Submit
               </button>
@@ -176,7 +176,6 @@ function PatientAdd() {
                       id="address"
                       cols="30"
                       rows="10"
-                      required
                       placeholder="Optional"
                       onChange={(e) => setNewPatAddr(e.target.value)}
                     ></textarea>

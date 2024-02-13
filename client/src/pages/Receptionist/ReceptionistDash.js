@@ -62,11 +62,11 @@ function ReceptionistDash() {
       <NavBar />
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <h1>Dashboard</h1>
-          <br />
-          <div className={styles.totalPatients}>
-            <h2>Total Patients</h2>
-            <h1>{totPat}</h1>
+        <div className={styles.header}>
+            <h1>Dashboard</h1>
+            <div className={styles.patAttend}>
+              <h2>No. Of Patients: {totPat}</h2>
+            </div>
           </div>
           <h1 style={{ textAlign: "center" }}>
             All Patients And Doctor Records

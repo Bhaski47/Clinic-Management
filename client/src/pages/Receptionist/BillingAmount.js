@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../utils/Loader";
 import { useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+
 function BillingAmount() {
   const navigate = useNavigate();
   const [docName, setDocname] = useState("");
@@ -28,7 +30,7 @@ function BillingAmount() {
   const checkValid = async (e) => {
     try {
       e.preventDefault();
-      if (!patNo) return;
+      if (!patNo) return errorToast("Enter Patient Number");
       setIsLoad(true);
       const patDetails = await axios.post(
         // "http://localhost:3006/api/recept/retrpat",
@@ -38,13 +40,14 @@ function BillingAmount() {
       setPatName(patDetails.data.name);
       setPatage(patDetails.data.age);
       setIsCheck(true);
-      setIsLoad(false);
-      // const fetch = await axios.post("http://localhost:3006/api/docs/rettoken");
       const fetch = await axios.post("https://careconnect-5ssb.onrender.com/api/docs/rettoken");
       setPrescription(fetch.data.data.patient.combinedData);
+      setIsLoad(false);
+      success("Loaded Successfully");
+      // const fetch = await axios.post("http://localhost:3006/api/docs/rettoken");
       // console.log(fetch.data.data.patient.combinedData)
     } catch (err) {
-      console.error("Error " + err);
+      errorToast("Invalid Patient Number")
       setIsLoad(false);
     }
   };
@@ -52,7 +55,7 @@ function BillingAmount() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (isCheck === false) return;
+      if (isCheck === false) return errorToast("Please Enter The Above Credentials");
       if (!amount) return;
       setIsLoad(true);
       console.log(docName)
@@ -66,16 +69,17 @@ function BillingAmount() {
           amount: amount,
         }
       );
-      console.log(response.data.message);
       setIsCheck(false);
       setIsLoad(false);
+      success("Submitted Successfully")
     } catch (err) {
       setIsLoad(false);
-      console.error("Error " + err);
+      errorToast("Internal Server Error")
     }
   };
   const checkID = async (e) => {
     try {
+      if(!idNo) return errorToast("Enter The Token ID");
       e.preventDefault();
       const fetch = await axios.post(
         // "http://localhost:3006/api/docs/rettoken",
@@ -91,16 +95,19 @@ function BillingAmount() {
       console.log(fetch.data.data.patient.combinedData);
     } catch (err) {
       setIsCheck(false);
-      console.log(err);
+      errorToast("Token ID Is Invalid")
     }
   };
+  const success = (value) =>toast.success(value);
+  const errorToast = (value) =>toast.error(value);
+
   return (
     <>
       <NavBar />
+      <Toaster/>
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <h1>Billing</h1>
-          {/* <div className={styles.checkNoBox}> */}
           <form className={styles.formContainer}>
             {isLoad && <Loader />}
             {!isLoad && (
@@ -128,6 +135,7 @@ function BillingAmount() {
                   <input
                     type="text"
                     required
+                    placeholder="Enter The Name Of The Doctor"
                     onChange={(e) => setDocname(e.target.value)}
                   />
                 </div>
@@ -155,6 +163,7 @@ function BillingAmount() {
                   <input
                     type="number"
                     required
+                    placeholder="If Token ID Entered Then It Is Optional"
                     onChange={(e) => setPatno(e.target.value)}
                   />
                 </div>
@@ -172,7 +181,6 @@ function BillingAmount() {
                   <label htmlFor="address">Previous Consultations</label>
                   {prescription &&
                     prescription.map((data, index) => {
-                      //   const parsedPrescription = JSON.parse(data.prescription);
                       return (
                         <li key={index}>
                           {data.doctorName}-{data.prescription}
@@ -202,7 +210,6 @@ function BillingAmount() {
             )}
           </form>
         </div>
-        {/* </div> */}
       </div>
     </>
   );

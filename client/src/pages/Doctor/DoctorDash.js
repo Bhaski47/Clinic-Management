@@ -18,7 +18,7 @@ function DoctorDash() {
   };
   const [localData, setLocalData] = useState({ data: { data: initialData } });
   const [data, setData] = useState([]);
-  const [pat,setPat] = useState('');
+  const [pat, setPat] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,14 +26,12 @@ function DoctorDash() {
       const temp = await localStorage.getItem("docData");
       const parsedData = temp ? JSON.parse(temp) : {};
       setLocalData((prevLocalData) => {
-        if (
-          JSON.stringify(prevLocalData) !== JSON.stringify(parsedData)
-        ) {
+        if (JSON.stringify(prevLocalData) !== JSON.stringify(parsedData)) {
           return parsedData;
         }
         return prevLocalData;
       });
-      console.log(localData.data.data._id)
+      console.log(localData.data.data._id);
       if (!temp) {
         navigate("/");
         return;
@@ -54,69 +52,19 @@ function DoctorDash() {
 
     fetchData();
   }, [navigate, localData]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const fetchID = localData.data.data._id;
-  //     // const id = "65c3bfc511ad6e05a712b26e";
-  //     // console.log(fetchID);
-  //     if (fetchID) {
-  //       const response = await axios.post(
-  //         "https://careconnect-5ssb.onrender.com/api/docs/retdoc",
-  //         {
-  //           id: fetchID,
-  //         }
-  //       );
-  //       setData(response.data.data.patConsult);
-  //       console.log(data);
-  //     }
-  //   };
-
-  //   if (!isFetch) {
-  //     fetchData();
-  //   }
-  // }, [localData]);
   return (
     <>
       <DocNavBar />
-      {/* <div className={styles.container}>
-        <div className={styles.tableContainer}>
-          <div className={styles.searchBar}>
-            <input type="text" className={styles.search} placeholder="Search" />
-          </div>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Name Of Patient</th>
-                <th>Age</th>
-                <th>Ph No</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody className={styles.patient}>
-              {data && data.map((data, index) => {
-                return(
-                  <tr key={index} className={styles.patDetails}>
-                    <td>{index + 1}</td>
-                    <td>{data.name}</td>
-                    <td>{data.age}</td>
-                    <td>{data.phno}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div> */}
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <h1>Dashboard</h1>
-          <br />
-          <div className={styles.totalPatients}>
-            <h2>Patients </h2>
-            <h1>{pat}</h1>
+          <div className={styles.header}>
+            <h1>Dashboard</h1>
+            <div className={styles.patAttend}>
+              <h2>No. Of Patients: {pat}</h2>
+            </div>
           </div>
-          <h1 style={{ textAlign: "center" }}>
+          <br />
+          <h1 style={{ textAlign: "center", marginBottom: "15px" }}>
             All Patients And Doctor Records
           </h1>
           <div className={styles.tableContainer}>

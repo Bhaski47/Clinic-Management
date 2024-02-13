@@ -3,15 +3,13 @@ import styles from "../../styles/page/Auth.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../utils/Loader";
-// import coverPage from "../../assets/img/Medical prescription-amico.png";
+import toast, { Toaster } from "react-hot-toast";
+
 function Auth() {
   const nav = useNavigate();
-  // const [username, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
   const [isDoctor, setDoctor] = useState(true);
-  const [error, setError] = useState(false);
-  const [resError, setReserror] = useState("");
   const [isloader, setLoader] = useState(false);
   useEffect(() => {
     isDoctor
@@ -32,25 +30,17 @@ function Auth() {
       );
       const tok = JSON.stringify(token.data);
       localStorage.setItem("receptData", tok);
-      // setReserror("Logging In");
-      // setLogin(false);
       nav("/recept/dashboard");
+      success("Logging In")
       setLoader(false)
     } catch (err) {
+      errorToast("Invalid Email Or Password Credentials")
       setLoader(false)
-      console.log(err);
-      setReserror(err.response.data.message);
-      setError(true);
     }
-  };
-  const errorDetector = () => {
-    setError(false);
-    setReserror("");
   };
   const handleSign = async (e) => {
     e.preventDefault();
     setLoader(true);
-    errorDetector();
     const data = {
       email: email,
       password: pass,
@@ -63,21 +53,21 @@ function Auth() {
       );
       tok = JSON.stringify(tok);
       localStorage.setItem("docData", tok);
-      // console.log(data.password)
-      // setReserror(token.data.message);
-      setReserror("Logging In");
-      // setLogin(false);
+      success("Logging In");
       nav("/doc/dash");
+      success("Logging In")
       setLoader(false)
     } catch (err) {
       setLoader(false)
-      console.log(err);
-      setReserror("Error " + err);
-      setError(true);
+      errorToast("Invalid Email Or Password Credentials")
     }
   };
+  const success = (value) =>toast.success(value);
+  const errorToast = (value) =>toast.error(value);
+
   return (
     <div className={styles.webPage}>
+      <Toaster/>
       <div className={styles.container}>
         <div className={styles.formContainer}>
           {isloader && <div className={styles.overlay}><Loader /></div>}
