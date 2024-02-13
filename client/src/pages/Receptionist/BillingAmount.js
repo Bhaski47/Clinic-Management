@@ -64,7 +64,6 @@ function BillingAmount() {
         "https://careconnect-5ssb.onrender.com/api/recept/bill",
         {
           patphno: patNo,
-          phno: receptData.data.phno,
           name: docName,
           amount: amount,
         }
