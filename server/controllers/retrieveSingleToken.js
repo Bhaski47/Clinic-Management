@@ -5,16 +5,15 @@ const { Pats } = require("../models/patModel");
 
 const retrieveSingleToken = async (req, res) => {
   try {
+    if(req.body.id){
     const tokenValue = parseInt(req.body.id);
     const result = await Token.aggregate([
       { $match: { "tokens.token": tokenValue } },
     ]);
     const results = result[0].tokens;
     let results1 = results.find((data) => data.token === parseInt(req.body.id));
-    // return res.status(200).send({data:results1})
     const docsDetails = await Doc.findById(results1.docs);
     const patientDetails = await Pats.findById(results1.patient);
-    // console.log(patientDetails)
     if (!docsDetails || !patientDetails) {
       return res
         .status(404)
@@ -25,17 +24,15 @@ const retrieveSingleToken = async (req, res) => {
     );
     let doctorNames = [];
     await Pats.findById(patientDetails._id)
-      .populate("docConsult.doctor") // Populate the doctor field in docConsult array
+      .populate("docConsult.doctor")
       .exec()
       .then((patient) => {
-        // Extract doctor names from docConsult array
         doctorNames = patient.docConsult.map(
           (consult) => consult.doctor.name
         );
       })
       .catch((err) => {
         console.error(err);
-        // Handle the error
       });
       const combinedData = prescriptions.map((prescription, index) => ({
         prescription,
@@ -59,8 +56,44 @@ const retrieveSingleToken = async (req, res) => {
         createdAt: results1.createdAt,
       },
     };
-
     return res.status(200).json(responseData);
+  }
+  else if(req.body.patNo){
+    await Pats.findOne(req.body.patNo)
+      .populate("docConsult.doctor")
+      .exec()
+      .then((patient) => {
+        doctorNames = patient.docConsult.map(
+          (consult) => consult.doctor.name
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+      const combinedData = prescriptions.map((prescription, index) => ({
+        prescription,
+        doctorName: doctorNames[index],
+      }));
+    const responseData = {
+      data: {
+        token: results1.token,
+        docs: {
+          _id: docsDetails._id,
+          name: docsDetails.name,
+          age: docsDetails.age,
+        },
+        patient: {
+          _id: patientDetails._id,
+          name: patientDetails.name,
+          age: patientDetails.age,
+          phno: patientDetails.phno,
+          combinedData
+        },
+        createdAt: results1.createdAt,
+      },
+    };
+    return res.status(200).json(responseData);
+  }
   } catch (err) {
     res.status(500).json({ message: "Server Error: " + err });
   }
