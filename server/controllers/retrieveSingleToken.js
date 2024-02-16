@@ -59,7 +59,7 @@ const retrieveSingleToken = async (req, res) => {
     return res.status(200).json(responseData);
   }
   else if(req.body.patNo){
-    await Pats.findOne(req.body.patNo)
+    await Pats.findOne({phno:req.body.patNo})
       .populate("docConsult.doctor")
       .exec()
       .then((patient) => {
