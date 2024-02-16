@@ -5,7 +5,7 @@ const { Pats } = require("../models/patModel");
 
 const retrieveSingleToken = async (req, res) => {
   try {
-    if (req.body.id!==null) {
+    if (req.body.id) {
       const tokenValue = parseInt(req.body.id);
       const result = await Token.aggregate([
         { $match: { "tokens.token": tokenValue } },
