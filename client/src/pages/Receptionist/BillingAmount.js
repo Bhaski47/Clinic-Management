@@ -85,6 +85,7 @@ function BillingAmount() {
     try {
       if (!idNo) return errorToast("Enter The Token ID");
       e.preventDefault();
+      setIsLoad(true);
       const fetch = await axios.post(
         // "http://localhost:3006/api/docs/rettoken",
         "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
@@ -97,8 +98,10 @@ function BillingAmount() {
       setPatage(fetch.data.data.patient.age);
       setPrescription(fetch.data.data.patient.combinedData);
       console.log(fetch.data.data.patient.combinedData);
+      setIsLoad(false);
     } catch (err) {
       setIsCheck(false);
+      setIsLoad(false);
       errorToast("Token ID Is Invalid");
     }
   };
@@ -112,8 +115,12 @@ function BillingAmount() {
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <h1>Billing</h1>
+            {isLoad && (
+              <div className={styles.loader_wrapper}>
+                <Loader />
+              </div>
+            )}
           <form className={styles.formContainer}>
-            {isLoad && <Loader />}
             {!isLoad && (
               <>
                 <div className={styles.formGroup}>

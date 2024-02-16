@@ -105,11 +105,11 @@ function PatientAdd() {
           )}
           {
             isExist && fetchTokId &&
-            <>
+            <div className={styles.tokenBox}>
             <h1 className={styles.tokId}>Your ID</h1>
             <h1 className={styles.tokId}>{isFetched}</h1>
             <button className={styles.btn} onClick={()=>setFetchTokid(false)}>Close</button>
-            </>
+            </div>
           }
           {isExist && loader && (
             <div className={styles.checkNoBox}>

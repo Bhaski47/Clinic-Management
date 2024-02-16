@@ -6,8 +6,6 @@
   width: 100%;
   background-image: url('../../assets/img/authPageBG1.png');
   background-size: cover;
-  /* background-position: ; */
-  /* background-color: red; */
 }
 
 .container {
@@ -16,7 +14,6 @@
   border-radius: 30px;
   border: 1px solid transparent;
   box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
-  /* background-color: #fff; */
   backdrop-filter: blur(30px);
   display: flex;
   flex-direction: row;
@@ -31,7 +28,6 @@
 .formContainer {
   flex: 1;
   border-radius: 30px 0 0 30px;
-  /* background-color: white; */
   padding: 1rem;
   position: relative;
 }
@@ -64,21 +60,14 @@ p {
   align-items: center;
 }
 
-/* .contentWrap:first-child{
-  margin-top: 17%;
-} */
-
 .contentWrap {
   margin-top: 9%;
   display: flex;
   flex-direction: column;
-  /* background-color: green; */
-  /* margin: auto; */
 }
 
 
 .contentWrap input {
-  /* align-self: center; */
   font-size: large;
   width: 220px;
   height: 30px;
@@ -93,13 +82,9 @@ p {
 
 .textContainer {
   flex: 1;
-  /* border-radius: 0 30px 30px 0; */
-  /* background-color: white; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* margin-left:0 5rem; */
-  /* background-color: red; */
 }
 
 .textContainer h1 {
@@ -181,5 +166,4 @@ p {
   display: flex;
   justify-content: center;
   width: 118%;
-  /* background-color: red; */
 }

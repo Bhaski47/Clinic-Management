@@ -1,8 +1,6 @@
 .wrapper{
     margin-left: 24vw;
     padding-top: 2%;
-    /* height: 100%; */
-    /* width: 77%; */
 }
 .container{
     overflow: auto;
@@ -10,7 +8,6 @@
     margin-right: 5%;
     height: 80vh;
     padding: 3rem;
-    /* background-color: red; */
     border: 1px solid transparent;
     box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
 }
@@ -63,7 +60,6 @@ input::-webkit-inner-spin-button {
 
 .checkNoBox label {
     font-size: 1.3rem;
-    /* font-family: Ubuntu; */
 }
 
 .search {
