@@ -36,17 +36,21 @@ function BillingAmount() {
         "https://careconnect-5ssb.onrender.com/api/recept/retrpat",
         { phno: patNo }
       );
+      console.log(patDetails);
       setPatName(patDetails.data.name);
       setPatage(patDetails.data.age);
       setIsCheck(true);
-      const fetch = await axios.post("https://careconnect-5ssb.onrender.com/api/docs/rettoken");
+      const fetch = await axios.post(
+        "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
+        { patNo: patNo }
+      );
       setPrescription(fetch.data.data.patient.combinedData);
       setIsLoad(false);
       success("Loaded Successfully");
       // const fetch = await axios.post("http://localhost:3006/api/docs/rettoken");
       // console.log(fetch.data.data.patient.combinedData)
     } catch (err) {
-      errorToast("Invalid Patient Number")
+      errorToast("Invalid Patient Number");
       setIsLoad(false);
     }
   };
@@ -54,11 +58,12 @@ function BillingAmount() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (isCheck === false) return errorToast("Please Enter The Above Credentials");
+      if (isCheck === false)
+        return errorToast("Please Enter The Above Credentials");
       if (!amount) return;
       setIsLoad(true);
-      console.log(receptData)
-      const response = await axios.post(
+      console.log(patNo);
+      await axios.post(
         // "http://localhost:3006/api/recept/bill",
         "https://careconnect-5ssb.onrender.com/api/recept/bill",
         {
@@ -70,15 +75,15 @@ function BillingAmount() {
       );
       setIsCheck(false);
       setIsLoad(false);
-      success("Submitted Successfully")
+      success("Submitted Successfully");
     } catch (err) {
       setIsLoad(false);
-      errorToast("Internal Server Error")
+      errorToast("Internal Server Error");
     }
   };
   const checkID = async (e) => {
     try {
-      if(!idNo) return errorToast("Enter The Token ID");
+      if (!idNo) return errorToast("Enter The Token ID");
       e.preventDefault();
       const fetch = await axios.post(
         // "http://localhost:3006/api/docs/rettoken",
@@ -94,16 +99,16 @@ function BillingAmount() {
       console.log(fetch.data.data.patient.combinedData);
     } catch (err) {
       setIsCheck(false);
-      errorToast("Token ID Is Invalid")
+      errorToast("Token ID Is Invalid");
     }
   };
-  const success = (value) =>toast.success(value);
-  const errorToast = (value) =>toast.error(value);
+  const success = (value) => toast.success(value);
+  const errorToast = (value) => toast.error(value);
 
   return (
     <>
       <NavBar />
-      <Toaster/>
+      <Toaster />
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <h1>Billing</h1>
