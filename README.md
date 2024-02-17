@@ -47,11 +47,6 @@ Start the application:
 - The receptionist performs billing using the patient's token ID.
 - Billing includes details of the prescribed medication and doctor's consultation.
 
-##Addtional Features 
-
-- The Patient can give the phone to retrieve the details so that if the patient came at night then he can visit next day with same token id
-- If the Token id is lost then the patient can provide the phone number to retrive the all details
-
 # Usage
 
 ### 1. Receptionist Login:
@@ -115,3 +110,7 @@ Start the application:
 
 6. **Prescription History**
    - Maintain a detailed history of prescriptions for each patient.
+
+## Addtional Features
+- The Patient can give the phone to retrieve the details so that if the patient came at night then he can visit next day with same token id
+- If the Token id is lost then the patient can provide the phone number to retrive the all details
