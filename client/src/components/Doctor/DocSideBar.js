@@ -17,7 +17,7 @@ function DocSideBar({name}) {
       </div>
       <div className={styles.navContainer}>
         <ul>
-          <NavLink to="/doc/dash" className={styles.active}>
+          <NavLink exact to="/doc/dash" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="home-outline"></span>
@@ -26,7 +26,7 @@ function DocSideBar({name}) {
             </li>
           </NavLink>
 
-          <NavLink to="/doc/dash/pats">
+          <NavLink to="/doc/pats" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="people-outline"></span>
@@ -35,7 +35,7 @@ function DocSideBar({name}) {
             </li>
           </NavLink>
 
-          <NavLink to="/doc/dash/docinfo">
+          <NavLink to="/doc/docinfo" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="help-outline"></span>

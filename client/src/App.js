@@ -19,11 +19,11 @@ function App() {
       element: <ReceptionistDash />,
     },
     {
-      path: "/recept/dashboard/pats",
+      path: "/recept/pats",
       element: <PatientAdd />,
     },
     {
-      path: "/recept/dashboard/bill",
+      path: "/recept/bill",
       element: <BillingAmount />,
     },
     {
@@ -31,7 +31,7 @@ function App() {
       element: <DoctorDash />,
     },
     {
-      path: "/doc/dash/pats",
+      path: "/doc/pats",
       element: <PatientChecker />,
     },
     {
@@ -39,7 +39,7 @@ function App() {
       element: <UserInfo />,
     },
     {
-      path: "/doc/dash/docinfo",
+      path: "/doc/docinfo",
       element: <UserDocInfo />,
     },
   ]);

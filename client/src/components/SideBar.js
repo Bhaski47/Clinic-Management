@@ -16,7 +16,7 @@ function SideBar({ name }) {
       </div>
       <div className={styles.navContainer}>
         <ul>
-          <NavLink to="/recept/dashboard" className={styles.active}>
+          <NavLink to="/recept/dashboard" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="home-outline"></span>
@@ -25,16 +25,16 @@ function SideBar({ name }) {
             </li>
           </NavLink>
 
-          <NavLink to="/recept/dashboard/pats">
+          <NavLink to="/recept/pats" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
-                <span name="people-outline"></span>
+                <span name="people-outline" className={({isActive})=>isActive ? styles.active : undefined}></span>
               </span>
               <h3 className={styles.title}>Patient Management</h3>
             </li>
           </NavLink>
 
-          <NavLink to="/recept/dashboard/bill">
+          <NavLink to="/recept/bill" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="chatbubble-outline"></span>
@@ -43,7 +43,7 @@ function SideBar({ name }) {
             </li>
           </NavLink>
 
-          <NavLink to="/recept/userinfo">
+          <NavLink to="/recept/userinfo" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
                 <span name="help-outline"></span>

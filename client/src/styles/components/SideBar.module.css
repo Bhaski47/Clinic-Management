@@ -40,12 +40,28 @@
 
 .navContainer ul a li {
     /* background-color: red; */
-    width: 100%;
+    text-align: center;
+    width: 70%;
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: rgb(181, 181, 181);
     border-radius: 30px;
+}
+
+.active{
+    color: white;
+    transform: scale(1.1);
+}
+.active li {
+    width: 100%;
+    background-color: white;
+}
+.active li h3{
+    color: #17171f;
+}
+.active li h3:hover{
+    color: #17171f;
 }
 
 .navContainer ul a li:hover {

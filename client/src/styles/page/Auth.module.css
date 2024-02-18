@@ -73,6 +73,8 @@ p {
   height: 30px;
   outline: none;
   padding: 0 1rem;
+  border-radius: 10px;
+  border: 0.1px solid black;
 }
 
 .buttonWrap {
