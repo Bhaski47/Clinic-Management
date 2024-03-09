@@ -6,6 +6,7 @@ import Loader from "../../utils/Loader";
 import toast, { Toaster } from "react-hot-toast";
 
 function Auth() {
+  const api = process.env.REACT_APP_REACT_API;
   const nav = useNavigate();
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ function Auth() {
     try {
       const token = await axios.post(
         // "http://localhost:3006/api/recept/logrecept",
-        "https://careconnect-5ssb.onrender.com/api/recept/logrecept",
+        `${api}/api/recept/logrecept`,
         {
           password: pass,
           email: email,
@@ -48,7 +49,7 @@ function Auth() {
     try {
       let tok = await axios.post(
         // "http://localhost:3006/api/docs/logdoc/",
-        "https://careconnect-5ssb.onrender.com/api/docs/logdoc/",
+        `${api}/api/docs/logdoc/`,
         data
       );
       tok = JSON.stringify(tok);

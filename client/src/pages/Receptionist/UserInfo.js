@@ -9,7 +9,6 @@ const UserInfo = () => {
   const [receptData, setReceptData] = useState({});
   useEffect(() => {
     const localData = localStorage.getItem("receptData");
-    console.log(JSON.parse(localData))
     if (!localData) return navigate("/");
     setReceptData(JSON.parse(localData));
   }, [navigate]);

@@ -8,6 +8,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 function BillingAmount() {
+  const api = process.env.REACT_APP_REACT_API;
   const navigate = useNavigate();
   const [docName, setDocname] = useState("");
   const [patNo, setPatno] = useState("");
@@ -22,7 +23,6 @@ function BillingAmount() {
   const [idNo, setIDno] = useState(false);
   useEffect(() => {
     const localData = localStorage.getItem("receptData");
-    // console.log(JSON.parse(localData))
     if (!localData) return navigate("/");
     setReceptData(JSON.parse(localData));
   }, [navigate]);
@@ -33,22 +33,19 @@ function BillingAmount() {
       setIsLoad(true);
       const patDetails = await axios.post(
         // "http://localhost:3006/api/recept/retrpat",
-        "https://careconnect-5ssb.onrender.com/api/recept/retrpat",
+        `${api}/api/recept/retrpat`,
         { phno: patNo }
       );
-      console.log(patDetails);
       setPatName(patDetails.data.name);
       setPatage(patDetails.data.age);
       setIsCheck(true);
       const fetch = await axios.post(
-        "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
+        `${api}/api/docs/rettoken`,
         { patNo: patNo }
       );
       setPrescription(fetch.data.data.patient.combinedData);
       setIsLoad(false);
       success("Loaded Successfully");
-      // const fetch = await axios.post("http://localhost:3006/api/docs/rettoken");
-      // console.log(fetch.data.data.patient.combinedData)
     } catch (err) {
       errorToast("Invalid Patient Number");
       setIsLoad(false);
@@ -62,10 +59,9 @@ function BillingAmount() {
         return errorToast("Please Enter The Above Credentials");
       if (!amount) return;
       setIsLoad(true);
-      console.log(patNo);
       await axios.post(
         // "http://localhost:3006/api/recept/bill",
-        "https://careconnect-5ssb.onrender.com/api/recept/bill",
+        `${api}/api/recept/bill`,
         {
           patphno: patNo,
           phno: receptData.data.phno,
@@ -88,16 +84,14 @@ function BillingAmount() {
       setIsLoad(true);
       const fetch = await axios.post(
         // "http://localhost:3006/api/docs/rettoken",
-        "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
+        `${api}/api/docs/rettoken`,
         { id: idNo }
       );
-      // console.log(fetch)
       setIsCheck(true);
       setPatName(fetch.data.data.patient.name);
       setPatno(fetch.data.data.patient.phno);
       setPatage(fetch.data.data.patient.age);
       setPrescription(fetch.data.data.patient.combinedData);
-      console.log(fetch.data.data.patient.combinedData);
       setIsLoad(false);
     } catch (err) {
       setIsCheck(false);

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function DoctorDash() {
+  const api = process.env.REACT_APP_REACT_API;
   const initialData = {
     _id: "",
     name: "",
@@ -31,7 +32,6 @@ function DoctorDash() {
         }
         return prevLocalData;
       });
-      console.log(localData.data.data._id);
       if (!temp) {
         navigate("/");
         return;
@@ -39,19 +39,18 @@ function DoctorDash() {
       if (localData.data.data._id) {
         const fetchID = localData.data.data._id;
         const response = await axios.post(
-          "https://careconnect-5ssb.onrender.com/api/docs/retdoc",
+          `${api}/api/docs/retdoc`,
           {
             id: fetchID,
           }
         );
         setData(response.data.data.patConsult);
         setPat(response.data.data.patConsult.length);
-        console.log(data);
       }
     };
 
     fetchData();
-  }, [navigate, localData]);
+  }, [navigate, localData,api]);
   return (
     <>
       <DocNavBar />

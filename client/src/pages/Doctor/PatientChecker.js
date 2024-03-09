@@ -7,6 +7,7 @@ import Loader from "../../utils/Loader";
 import toast, { Toaster } from "react-hot-toast";
 
 function PatientChecker() {
+  const api = process.env.REACT_APP_REACT_API;
   const navigate = useNavigate();
   const init = {};
   const [localData, setLocalData] = useState(init);
@@ -50,7 +51,7 @@ function PatientChecker() {
     setLoader(true);
     try {
       const fetch = await axios.post(
-        "https://careconnect-5ssb.onrender.com/api/docs/rettoken",
+        `${api}/api/docs/rettoken`,
         {
           id: tokenValid,
         }
@@ -79,7 +80,7 @@ function PatientChecker() {
     setLoader(true);
     try {
       await axios.post(
-        "https://careconnect-5ssb.onrender.com/api/docs/enqpat",
+        `${api}/api/docs/enqpat`,
         {
           patid: patId,
           id: localData.data.data._id,

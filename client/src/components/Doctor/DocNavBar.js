@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/components/AuthHeader.module.css";
 import DocSideBar from "./DocSideBar";
 import { useNavigate } from "react-router-dom";
 

@@ -3,8 +3,9 @@ import styles from "../../styles/page/ReceptionistDash.module.css";
 import NavBar from "../../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import toast, { Toaster } from "react-hot-toast";
 function ReceptionistDash() {
+  const api = process.env.REACT_APP_REACT_API;
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [receptData, setReceptData] = useState({});
@@ -32,10 +33,9 @@ function ReceptionistDash() {
         if (parsedLocalData.data) {
           const response = await axios.post(
             // "http://localhost:3006/api/recept/retrecept",
-            "https://careconnect-5ssb.onrender.com/api/recept/retrecept",
+            `${api}/api/recept/retrecept`,
             { id: parsedLocalData.data._id }
           );
-          // console.log(response)
           setData((prevData) => {
             if (
               JSON.stringify(prevData) !== JSON.stringify(response.data.data)
@@ -45,24 +45,25 @@ function ReceptionistDash() {
             return prevData;
           });
           setTotpat(response.data.data.doctor.length);
-          console.log("data: ", data);
         }
 
-        // console.log(receptData);
       } catch (error) {
-        console.error("Error while getting local data:", error);
+        errorToast("Error while getting data")
       }
     };
 
     fetchData();
-  }, [navigate, receptData, data]);
+  }, [navigate, receptData, data,api]);
+  // const success = (value) => toast.success(value);
+  const errorToast = (value) => toast.error(value);
 
   return (
     <>
+      <Toaster />
       <NavBar />
       <div className={styles.wrapper}>
         <div className={styles.container}>
-        <div className={styles.header}>
+          <div className={styles.header}>
             <h1>Dashboard</h1>
             <div className={styles.patAttend}>
               <h2>No. Of Patients: {totPat}</h2>

@@ -8,6 +8,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 function PatientAdd() {
+  const api = process.env.REACT_APP_REACT_API;
   const navigate = useNavigate();
   const [isExist, setExist] = useState(true);
   const [getDocname, setDocname] = useState("");
@@ -26,7 +27,7 @@ function PatientAdd() {
       setLoader(true);
       const fetchData = await axios.post(
         // "http://localhost:3006/api/recept/createtoken",
-        "https://careconnect-5ssb.onrender.com/api/recept/createtoken",
+        `${api}/api/recept/createtoken`,
         {
           docname: getDocname,
           patNo: getNumber,
@@ -44,7 +45,7 @@ function PatientAdd() {
     try {
       e.preventDefault();
       await axios.post(
-        "https://careconnect-5ssb.onrender.com/api/recept/receptregister",
+        `${api}/api/recept/receptregister`,
         {
           name: getnewPatName,
           age: getnewPatAge,
