@@ -6,7 +6,7 @@ import Loader from "../../utils/Loader";
 import toast, { Toaster } from "react-hot-toast";
 
 function Auth() {
-  const api = process.env.REACT_APP_REACT_API;
+  const api = process.env.REACT_APP_API_BASE_URL;
   const nav = useNavigate();
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
