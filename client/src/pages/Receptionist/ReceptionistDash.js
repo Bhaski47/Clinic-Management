@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 function ReceptionistDash() {
-  const api = process.env.REACT_APP_REACT_API;
+  const api = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [receptData, setReceptData] = useState({});

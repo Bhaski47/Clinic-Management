@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function DoctorDash() {
-  const api = process.env.REACT_APP_REACT_API;
+  const api = process.env.REACT_APP_API_BASE_URL;
   const initialData = {
     _id: "",
     name: "",

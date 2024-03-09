@@ -7,7 +7,7 @@ import Loader from "../../utils/Loader";
 import toast, { Toaster } from "react-hot-toast";
 
 function PatientChecker() {
-  const api = process.env.REACT_APP_REACT_API;
+  const api = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
   const init = {};
   const [localData, setLocalData] = useState(init);
