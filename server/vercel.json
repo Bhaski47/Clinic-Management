@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "adpp.js",
+      "src": "app.js",
       "use": "@now/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "adpp.js"
+      "dest": "app.js"
     }
   ]
 }
