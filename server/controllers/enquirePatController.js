@@ -11,16 +11,12 @@ const enquirePatController = async (req, res) => {
         if (!doc) {
             return res.status(404).send({data:"Doctor Not Found"});
         }
-        // const docId = req.body.docId;
         let prescription = req.body.pres;
-        // console.log(prescription)
-        // prescription = JSON.stringify(prescription);
         if (typeof prescription !== 'string') {
             return res.status(400).json({ error: 'Prescription must be a string' });
         }
         const docObjectId = new mongoose.Types.ObjectId(doc._id);
         const patDetail = await Pats.findOne({_id:req.body.patid})
-        // console.log(patDetail.id)
         if (!doc.patConsult) {
             doc.patConsult = [];
         }
@@ -43,7 +39,7 @@ const enquirePatController = async (req, res) => {
         res.status(200).json({ message: 'Patient details added successfully' });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Internal Server Error " + err.message);
+        res.status(500).json("Internal Server Error " + err.message);
     }
 };
 
