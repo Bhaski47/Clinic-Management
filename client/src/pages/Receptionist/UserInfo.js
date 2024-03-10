@@ -19,11 +19,11 @@ const UserInfo = () => {
         <div className={styles.container}>
             <h1>Hi ! { receptData.data && (receptData.data.name)}</h1>
             <p className={styles.subHead}>Receptionist</p>
-            <h2>Name: <h4> {receptData.data && receptData.data.name}</h4></h2>
-            <h2>Age: <h4>{receptData.data && receptData.data.age }</h4></h2>
-            <h2>Gender: <h4>{receptData.data && receptData.data.gender}</h4></h2>
-            <h2>Ph No:<h4> {receptData.data && receptData.data.phno}</h4></h2>
-            <h2>Email:<h4> {receptData.data && receptData.data.email}</h4></h2>
+            <h2>Name:  {receptData.data && receptData.data.name}</h2>
+            <h2>Age: {receptData.data && receptData.data.age }</h2>
+            <h2>Gender: {receptData.data && receptData.data.gender}</h2>
+            <h2>Ph No: {receptData.data && receptData.data.phno}</h2>
+            <h2>Email: {receptData.data && receptData.data.email}</h2>
         </div>
       </div>
     </>

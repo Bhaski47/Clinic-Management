@@ -18,11 +18,11 @@ function UserDocInfo() {
         <div className={styles.container}>
             <h1>Hi ! { receptData.data && (receptData.data.data.name)}</h1>
             <p className={styles.subHead}>Doctor</p>
-            <h2>Name: <h4> {receptData.data && receptData.data.data.name}</h4></h2>
-            <h2>Age: <h4>{receptData.data && receptData.data.data.age }</h4></h2>
-            <h2>Gender: <h4>{receptData.data && receptData.data.data.gender}</h4></h2>
-            <h2>Ph No:<h4> {receptData.data && receptData.data.data.phno}</h4></h2>
-            <h2>Email:<h4> {receptData.data && receptData.data.data.email}</h4></h2>
+            <h2>Name: {receptData.data && receptData.data.data.name}</h2>
+            <h2>Age: {receptData.data && receptData.data.data.age }</h2>
+            <h2>Gender: {receptData.data && receptData.data.data.gender}</h2>
+            <h2>Ph No: {receptData.data && receptData.data.data.phno}</h2>
+            <h2>Email: {receptData.data && receptData.data.data.email}</h2>
         </div>
       </div>
     </>

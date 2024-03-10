@@ -95,6 +95,27 @@
     font-family: NunitoReg;
     border-spacing: 8px;
     border: 10px solid black;
-
     text-align: center;
 } 
+
+@media screen and (width < 580px) {
+    .wrapper{
+        margin-left: 0vw;
+        padding-left: 5%;
+        padding-top: 8%;
+    }
+    .container{
+        font-size: 4vw;
+        border-radius: 30px;
+        margin-right: 5%;
+        height: 75vh;
+        padding: 3rem;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    }
+    .header{
+        display: flex;
+        gap: 0px;
+        flex-direction: column;
+    }
+}

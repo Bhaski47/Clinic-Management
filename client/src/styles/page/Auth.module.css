@@ -169,3 +169,22 @@ p {
   justify-content: center;
   width: 118%;
 }
+
+@media screen and (width < 780px ) {
+  .textContainer{
+    display: none;
+  }
+  .contentWrap > input{
+    width: 80%;
+  }
+  .container {
+    min-width: 75vw;
+    height: 60vh;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(30px);
+    display: flex;
+    flex-direction: row;
+  }
+}
