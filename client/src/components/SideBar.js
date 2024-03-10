@@ -28,7 +28,6 @@ function SideBar({ name }) {
           <NavLink to="/recept/pats" className={({isActive})=>isActive ? styles.active : undefined}>
             <li>
               <span className={styles.icon}>
-                <span name="people-outline" className={({isActive})=>isActive ? styles.active : undefined}></span>
               </span>
               <h3 className={styles.title}>Patient Management</h3>
             </li>
