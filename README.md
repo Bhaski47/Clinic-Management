@@ -17,11 +17,19 @@ A Seemless communication with Doctor and Receptionist Using MERN Stack
 
     cd Clinic-Management
 
-3.Install dependencies:
+3.Navigate to the frontend folder:
+
+    cd client
+
+4.Navigate to the backend folder:
+
+    cd server
+
+5.Install dependencies:
 
     npm install
 
-4.Set up the MongoDB database:
+6.Set up the MongoDB database:
     Create a MongoDB Atlas account or set up a local MongoDB instance.
     Update the MongoDB connection string in the server/db.js file.
 
