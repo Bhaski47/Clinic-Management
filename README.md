@@ -95,28 +95,15 @@ Start the application:
 
 # Features
 
-1. **Appointment Scheduling**
-   - Allow patients to schedule appointments with doctors.
-   - Implement a calendar system for managing appointments.
-   - Send reminders to patients about upcoming appointments.
-
-2. **Patient Records**
+1. **Patient Records**
    - Maintain comprehensive electronic health records for each patient.
    - Include information about allergies, previous illnesses, and surgeries.
 
-3. **Medication Management**
-   - Create a system to manage and track prescribed medications.
-   - Implement alerts for medication schedules and refills.
-
-4. **Billing History**
-   - Keep a detailed history of billing transactions for each patient.
-   - Provides a clear breakdown of charges for consultations, medications, and other services.
-
-5. **Multi-User Roles**
+2. **Multi-User Roles**
    - Differentiate between roles such as receptionist, and doctor.
    - Assigned specific permissions and access levels based on roles.
 
-6. **Prescription History**
+3. **Prescription History**
    - Maintain a detailed history of prescriptions for each patient.
 
 ## Addtional Features
