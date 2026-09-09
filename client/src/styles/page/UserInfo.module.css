@@ -35,7 +35,7 @@
     font-style: italic;
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 820px) {
     .wrapper {
         margin-left: 0vw;
         padding-left: 5%;
@@ -43,7 +43,7 @@
     }
 
     .container {
-        font-size: 4vw;
+        /* font-size: 4vw; */
         border-radius: 30px;
         margin-right: 5%;
         min-height: 65vh;

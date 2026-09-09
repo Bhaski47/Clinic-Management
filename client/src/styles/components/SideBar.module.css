@@ -147,7 +147,7 @@
   transform: scale(100) translateX(2px);
 }
 
-@media screen and (width < 580px) {
+@media screen and (width <= 820px)  {
   .menu{
     display: block;
     position: absolute;
@@ -180,6 +180,9 @@
     flex-direction: column;
   }
   .mobContainer ul a {
+    width: 80%;
+    display: flex;
+    justify-content: center;
     text-decoration: none;
   }
   
@@ -198,7 +201,7 @@
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 3vw;
+    font-size: clamp(14px, 1.2vw, 18px);
     color: rgb(181, 181, 181);
     border-radius: 30px;
   }

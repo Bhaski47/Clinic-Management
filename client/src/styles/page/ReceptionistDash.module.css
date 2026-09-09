@@ -63,7 +63,7 @@
 }
 
 .tableContainer{
-    height: 60%;
+    height: 80%;
     overflow: auto;
     border: 1px solid transparent;
     border-radius: 30px;
@@ -98,18 +98,21 @@
     text-align: center;
 } 
 
-@media screen and (width < 580px) {
+@media screen and (width <= 820px) {
+    .tableContainer{
+        height: 60%;
+    }
     .wrapper{
         margin-left: 0vw;
         padding-left: 5%;
         padding-top: 8%;
     }
     .container{
-        font-size: 4vw;
+        /* font-size: 4vw; */
         border-radius: 30px;
         margin-right: 5%;
         height: 75vh;
-        padding: 3rem;
+        padding: 3rem 1rem;
         border: 1px solid transparent;
         box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
     }

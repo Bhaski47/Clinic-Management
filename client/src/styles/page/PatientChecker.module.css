@@ -201,14 +201,13 @@ textarea {
   color: #35cb80;
 }
 
-@media screen and (width < 580px) {
+@media screen and (width <= 820px) {
   .wrapper {
     margin-left: 0vw;
     padding-left: 5%;
     padding-top: 8%;
   }
   .container {
-    font-size: 4vw;
     border-radius: 30px;
     margin-right: 5%;
     height: 75vh;
@@ -242,7 +241,7 @@ textarea {
     font-style: italic;
   }
   .formGroup textarea {
-    width: 120%;
+    width: 100%;
   }
   .btn {
     width: 120%;

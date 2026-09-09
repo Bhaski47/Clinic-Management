@@ -30,57 +30,57 @@ function DocSideBar({ name }) {
           <h1>Care Clinic</h1>
         </div>
         <div className={styles.mobContainer}>
-        <ul>
-              <NavLink
-                to="/doc/dash"
-                className={({ isActive }) =>
-                  isActive ? styles.active : undefined
-                }
-              >
-                <li>
-                  <span className={styles.icon}>
-                    <span name="home-outline"></span>
-                  </span>
-                  <h3 className={styles.title}>Dashboard</h3>
-                </li>
-              </NavLink>
-
-              <NavLink
-                to="/doc/pats"
-                className={({ isActive }) =>
-                  isActive ? styles.active : undefined
-                }
-              >
-                <li>
-                  <span className={styles.icon}>
-                    <span name="people-outline"></span>
-                  </span>
-                  <h3 className={styles.title}>Patient Checker</h3>
-                </li>
-              </NavLink>
-
-              <NavLink
-                to="/doc/docinfo"
-                className={({ isActive }) =>
-                  isActive ? styles.active : undefined
-                }
-              >
-                <li>
-                  <span className={styles.icon}>
-                    <span name="help-outline"></span>
-                  </span>
-                  <h3 className={styles.title}>User Info</h3>
-                </li>
-              </NavLink>
+          <ul>
+            <NavLink
+              to="/doc/dash"
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+            >
               <li>
-                <button
-                  className={`${styles.button} ${styles.type1}`}
-                  onClick={handleSignOut}
-                >
-                  <span className={styles.btntxt}>Sign Out</span>
-                </button>
+                <span className={styles.icon}>
+                  <span name="home-outline"></span>
+                </span>
+                <h3 className={styles.title}>Dashboard</h3>
               </li>
-            </ul>
+            </NavLink>
+
+            <NavLink
+              to="/doc/pats"
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+            >
+              <li>
+                <span className={styles.icon}>
+                  <span name="people-outline"></span>
+                </span>
+                <h3 className={styles.title}>Patient Checker</h3>
+              </li>
+            </NavLink>
+
+            <NavLink
+              to="/doc/docinfo"
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+            >
+              <li>
+                <span className={styles.icon}>
+                  <span name="help-outline"></span>
+                </span>
+                <h3 className={styles.title}>User Info</h3>
+              </li>
+            </NavLink>
+            <li>
+              <button
+                className={`${styles.button} ${styles.type1}`}
+                onClick={handleSignOut}
+              >
+                <span className={styles.btntxt}>Sign Out</span>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
       <div>
